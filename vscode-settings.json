@@ -1,0 +1,33 @@
+{
+    "workbench.colorTheme": "Oceanic Next (dimmed bg)",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 300,
+    "editor.minimap.enabled": true,
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "editor.formatOnSave": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#333333",
+        "statusBar.noFolderBackground": "#333333",
+        "statusBar.debuggingBackground": "#263238"
+    },
+    "editor.fontSize": 14,
+    "css.validate": false,
+    "scss.validate": false,
+    "less.validate": false,
+    "editor.wordWrap": "on",
+    "go.formatTool": "goimports",
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 0,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "react.beautify.onSave": true,
+    "explorer.confirmDelete": false,
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    }
+}
