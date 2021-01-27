@@ -15,6 +15,14 @@
 - Set ~/.vimrc
 - Update ~/.ideavimrc
 
+## Windows
+### Change Skype annoying Ringtone
+- `npm run -g asar`
+- `cd /Applications/Skype.app/Contents/Resources`
+- `asar extract app.asar app`
+- `mv app.asar app.asar.bak`
+- replace the media inside `/Applications/Skype.app/Contents/Resources/app/media`
+
 
 ## Useful Reference
 
