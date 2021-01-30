@@ -11,6 +11,15 @@
     - hold cmd, drag the application to the finder toolbar
     - (Optional) right click iterm -> get info, right click the new tab application -> get info, drag iterm preview image to the new tab application icon to change the application icon similiar to iterm icon
 
+Productivity apps:
+- https://matthewpalmer.net/vanilla/
+- https://rectangleapp.com/
+- https://www.alfredapp.com/
+- https://meetfranz.com/
+- https://alt-tab-macos.netlify.app/
+- https://www.keka.io/en/
+
+
 ## Jetbrains 
 - Set ~/.vimrc
 - Update ~/.ideavimrc
