@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os/exec"
@@ -25,16 +24,7 @@ func main() {
 				return
 			}
 
-			cmd := exec.Command("/bin/sh", "-c", "sudo ls")
-			stdin, err := cmd.StdinPipe()
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			go func() {
-				defer stdin.Close()
-				io.WriteString(stdin, pw.Password)
-			}()
+			cmd := exec.Command("/bin/sh", "-c", fmt.Sprintf(`echo "%s" | sudo -S ls`, pw.Password))
 
 			out, err := cmd.CombinedOutput()
 			if err != nil {
