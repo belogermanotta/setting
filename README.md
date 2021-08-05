@@ -18,6 +18,7 @@ Productivity apps:
 - https://meetfranz.com/
 - https://alt-tab-macos.netlify.app/
 - https://www.keka.io/en/
+- https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html
 
 
 ## Jetbrains 
