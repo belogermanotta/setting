@@ -10,6 +10,8 @@
     - file -> export -> choose Application
     - hold cmd, drag the application to the finder toolbar
     - (Optional) right click iterm -> get info, right click the new tab application -> get info, drag iterm preview image to the new tab application icon to change the application icon similiar to iterm icon
+- Update default setting
+    - https://www.youtube.com/watch?v=psPgSN1bPLY
 
 Productivity apps:
 - https://matthewpalmer.net/vanilla/
@@ -32,6 +34,49 @@ Productivity apps:
 - `asar extract app.asar app`
 - `mv app.asar app.asar.bak`
 - replace the media inside `/Applications/Skype.app/Contents/Resources/app/media`
+
+
+## SteamDeck - Arch Linux
+### Enable steam deck
+#### Change current user password
+```
+passwd
+```
+
+#### Enable package manager:
+
+```
+sudo steamos-readonly disable
+sudo pacman-key --init
+sudo pacman-key --populate archlinux
+sudo pacman -Syu
+yay -S debtap
+
+sudo pacman -S flatpak
+flatpak install flathub org.gnome.Platform.Compat.i386 org.freedesktop.Platform.GL32.default org.freedesktop.Platform.GL.default
+```
+
+#### Install Deb file
+```
+sudo debtap -u deck <installationfile>.deb
+```
+
+#### Optimize Battery
+
+https://github.com/AdnanHodzic/auto-cpufreq#auto-cpufreq-installer
+```
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq && sudo ./auto-cpufreq-installer
+
+systemctl start auto-cpufreq
+systemctl status auto-cpufreq
+systemctl enable auto-cpufreq
+
+```
+
+#### References
+- https://flathub.org/apps/collection/popular
+- https://github.com/mikeroyal/Steam-Deck-Guide
 
 
 ## Useful Reference
