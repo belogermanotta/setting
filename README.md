@@ -42,18 +42,6 @@ Productivity apps:
 
 ### Enable steam deck
 
-#### Basic Configuration
-
-```
-# run vscode from terminal
-sudo ln -s /path/to/vscode/Code /usr/local/bin/code
-
-# change password
-passwd
-
-# enable midclick scroll - see linux/mouse/midclick-scroll section
-
-```
 
 #### Enable package manager:
 
@@ -72,6 +60,22 @@ flatpak install flathub org.gnome.Platform.Compat.i386 org.freedesktop.Platform.
 
 ```
 sudo debtap -u deck <installationfile>.deb
+```
+
+#### Basic Configuration
+
+```
+# run vscode from terminal
+sudo ln -s /path/to/vscode/Code /usr/local/bin/code
+
+# change password
+passwd
+
+# enable midclick scroll - see linux/mouse/midclick-scroll section
+
+# configure git
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
 ```
 
 #### Optimize Battery
