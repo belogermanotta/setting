@@ -76,6 +76,16 @@ passwd
 # configure git
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
+
+# mouse
+sudo pacman -S piper
+# if PGP issue, run:
+sudo pacman-key --refresh-keys
+# install piper
+# https://flathub.org/apps/details/org.freedesktop.Piper
+# set left mouse 5 button to ctrl+w
+
+
 ```
 
 #### Optimize Battery
@@ -92,12 +102,16 @@ systemctl enable auto-cpufreq
 
 ```
 
-#### References
+### Useful SteamDeck References
 
 - https://flathub.org/apps/collection/popular
 - https://github.com/mikeroyal/Steam-Deck-Guide
+- https://romsmania.cc/
 
-## Useful Reference
+
+
+
+## Useful Terminal Reference
 
 - https://github.com/haccks/zsh-config
 - https://github.com/dkarter/dotfiles
