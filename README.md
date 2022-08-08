@@ -86,6 +86,12 @@ sudo pacman-key --refresh-keys
 
 # disable middle click paste
 # System tray > right click > Configure Clipboard. Uncheck the option 'Prevent empty clipboard'.
+
+# Terminal - Konsole
+# Setting -> configure shortcut
+# Add ctrl+w to close window
+# Add ctrl+d to Split view left
+# Add ctrl+shift+d to Split view top
 ```
 
 #### Optimize Battery
