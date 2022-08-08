@@ -1,19 +1,20 @@
-
 ## OSX
+
 - Go to System Preferences -> Keyboard -> Shortcuts -> Services -> Files and Folders
-    - Set open new iterm tab here -> cmd + shift + T
-    - Set open new iterm window here -> cmd + ctrl + alt + T
-- Setup Open Iterm in Finder 
-    - Run application `Automator`
-    - file -> New -> Application -> Choose `Run Apple Script`
-    - Copy paste `open_iterm_tab.scpt`
-    - file -> export -> choose Application
-    - hold cmd, drag the application to the finder toolbar
-    - (Optional) right click iterm -> get info, right click the new tab application -> get info, drag iterm preview image to the new tab application icon to change the application icon similiar to iterm icon
+  - Set open new iterm tab here -> cmd + shift + T
+  - Set open new iterm window here -> cmd + ctrl + alt + T
+- Setup Open Iterm in Finder
+  - Run application `Automator`
+  - file -> New -> Application -> Choose `Run Apple Script`
+  - Copy paste `open_iterm_tab.scpt`
+  - file -> export -> choose Application
+  - hold cmd, drag the application to the finder toolbar
+  - (Optional) right click iterm -> get info, right click the new tab application -> get info, drag iterm preview image to the new tab application icon to change the application icon similiar to iterm icon
 - Update default setting
-    - https://www.youtube.com/watch?v=psPgSN1bPLY
+  - https://www.youtube.com/watch?v=psPgSN1bPLY
 
 Productivity apps:
+
 - https://matthewpalmer.net/vanilla/
 - https://rectangleapp.com/
 - https://www.alfredapp.com/
@@ -22,25 +23,36 @@ Productivity apps:
 - https://www.keka.io/en/
 - https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html
 
+## Jetbrains
 
-## Jetbrains 
 - Set ~/.vimrc
 - Update ~/.ideavimrc
 
 ## Windows
+
 ### Change Skype annoying Ringtone
+
 - `npm run -g asar`
 - `cd /Applications/Skype.app/Contents/Resources`
 - `asar extract app.asar app`
 - `mv app.asar app.asar.bak`
 - replace the media inside `/Applications/Skype.app/Contents/Resources/app/media`
 
-
 ## SteamDeck - Arch Linux
+
 ### Enable steam deck
-#### Change current user password
+
+#### Basic Configuration
+
 ```
+# run vscode from terminal
+sudo ln -s /path/to/vscode/Code /usr/local/bin/code
+
+# change password
 passwd
+
+# enable midclick scroll - see linux/mouse/midclick-scroll section
+
 ```
 
 #### Enable package manager:
@@ -57,6 +69,7 @@ flatpak install flathub org.gnome.Platform.Compat.i386 org.freedesktop.Platform.
 ```
 
 #### Install Deb file
+
 ```
 sudo debtap -u deck <installationfile>.deb
 ```
@@ -64,6 +77,7 @@ sudo debtap -u deck <installationfile>.deb
 #### Optimize Battery
 
 https://github.com/AdnanHodzic/auto-cpufreq#auto-cpufreq-installer
+
 ```
 git clone https://github.com/AdnanHodzic/auto-cpufreq.git
 cd auto-cpufreq && sudo ./auto-cpufreq-installer
@@ -75,9 +89,9 @@ systemctl enable auto-cpufreq
 ```
 
 #### References
+
 - https://flathub.org/apps/collection/popular
 - https://github.com/mikeroyal/Steam-Deck-Guide
-
 
 ## Useful Reference
 
