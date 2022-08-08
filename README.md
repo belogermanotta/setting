@@ -42,7 +42,6 @@ Productivity apps:
 
 ### Enable steam deck
 
-
 #### Enable package manager:
 
 ```
@@ -85,7 +84,8 @@ sudo pacman-key --refresh-keys
 # https://flathub.org/apps/details/org.freedesktop.Piper
 # set left mouse 5 button to ctrl+w
 
-
+# disable middle click paste
+# System tray > right click > Configure Clipboard. Uncheck the option 'Prevent empty clipboard'.
 ```
 
 #### Optimize Battery
@@ -107,9 +107,6 @@ systemctl enable auto-cpufreq
 - https://flathub.org/apps/collection/popular
 - https://github.com/mikeroyal/Steam-Deck-Guide
 - https://romsmania.cc/
-
-
-
 
 ## Useful Terminal Reference
 
