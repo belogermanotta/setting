@@ -12,16 +12,21 @@
   - (Optional) right click iterm -> get info, right click the new tab application -> get info, drag iterm preview image to the new tab application icon to change the application icon similiar to iterm icon
 - Update default setting
   - https://www.youtube.com/watch?v=psPgSN1bPLY
+  
+- Install system monitor in menu bar 
+run `brew install --cask stats` to install https://github.com/exelban/stats
 
 Productivity apps:
 
-- https://matthewpalmer.net/vanilla/
-- https://rectangleapp.com/
-- https://www.alfredapp.com/
-- https://meetfranz.com/
-- https://alt-tab-macos.netlify.app/
-- https://www.keka.io/en/
-- https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html
+- https://matthewpalmer.net/vanilla/ - task icon manager
+- https://rectangleapp.com/ - window manager
+- https://www.alfredapp.com/ - finder
+- https://meetfranz.com/ - omni channel messenger / email
+- https://www.keka.io/en/ - file archiver
+- https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html - monitoring
+- http://maddin.io/gestimer/ - small reminder
+- https://aptonic.com/ - dragdrop clipboard
+- https://apps.apple.com/us/app/amphetamine/id937984704 - keep awake
 
 ## Jetbrains
 
@@ -107,6 +112,9 @@ systemctl status auto-cpufreq
 systemctl enable auto-cpufreq
 
 ```
+
+#### Steam deck as controller
+https://www.reddit.com/r/SteamDeck/comments/v22ddf/guide_how_to_use_your_deck_as_a_steam_input/
 
 ### Useful SteamDeck References
 
