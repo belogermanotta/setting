@@ -1,9 +1,26 @@
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Important plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/preservim/nerdtree
+" https://github.com/mg979/vim-visual-multi
+" https://github.com/easymotion/vim-easymotion
+" https://github.com/neoclide/coc.nvim
+" https://github.com/junegunn/fzf.vim
+" https://github.com/tpope/vim-surround
+" https://github.com/tpope/vim-commentary
+" https://github.com/glepnir/dashboard-nvim
+" https://github.com/vim-airline/vim-airline
+" https://github.com/preservim/tagbar
+" https://github.com/dkarter/bullets.vim
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=500
+set history=5000
 
 " Enable filetype plugins
 filetype plugin on
@@ -11,7 +28,6 @@ filetype indent on
 
 " Fast saving
 nmap <leader>w :w!<cr>
-
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
@@ -191,6 +207,7 @@ command! Q q
 " Set leader to ,
 " Note: This line MUST come before any <leader> mappings
 let mapleader=','
+let g:mapleader=','
 let maplocalleader = ' '
 
 
@@ -210,6 +227,33 @@ nnoremap gy :0,$ y<cr>
 
 " Select entire buffer
 nnoremap vy ggVG
+
+" Shortcut to use blackhole register by default
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+nnoremap x "_x
+vnoremap x "_x
+nnoremap X "_X
+vnoremap X "_X
+
+nnoremap <leader>d d
+vnoremap <leader>d d
+nnoremap <leader>D D
+vnoremap <leader>D D
+nnoremap <leader>c c
+vnoremap <leader>c c
+nnoremap <leader>C C
+vnoremap <leader>C C
+nnoremap <leader>x x
+vnoremap <leader>x x
+nnoremap <leader>X X
+vnoremap <leader>X X
 
 " Make Y behave like other capital commands.
 " Hat-tip http://vimbits.com/bits/11
@@ -381,4 +425,3 @@ endif
 "EASY MOTION
 nmap ` <Plug>(easymotion-s)
 nmap <Space> <Plug>(easymotion-s)
-
