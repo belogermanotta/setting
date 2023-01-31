@@ -28,6 +28,20 @@ Productivity apps:
 - https://aptonic.com/ - dragdrop clipboard
 - https://apps.apple.com/us/app/amphetamine/id937984704 - keep awake
 
+### Installation commands
+```
+brew install --cask font-hack-nerd-font
+
+# https://www.lunarvim.org/docs/installation
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+# Brew
+brew install fzf --HEAD neovim node xcode git getantibody/tap/antibody powerlevel9k wget cmake putty kubectl redis-cli redis gradle redli helm terraform realpath jenv python jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font
+
+
+
+```
+
 ## Jetbrains
 
 - Set ~/.vimrc
