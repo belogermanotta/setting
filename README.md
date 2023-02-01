@@ -36,7 +36,7 @@ brew install --cask font-hack-nerd-font
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
 # Brew
-brew install lazygit fzf --HEAD neovim node xcode git getantibody/tap/antibody powerlevel9k wget cmake putty kubectl redis-cli redis gradle redli helm terraform realpath jenv python jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font
+brew install lazygit ripgrep fzf gnu-sed neovim node xcode git getantibody/tap/antibody powerlevel9k wget cmake putty kubectl redis-cli redis gradle redli helm terraform realpath jenv python jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font
 
 
 
@@ -142,3 +142,5 @@ https://www.reddit.com/r/SteamDeck/comments/v22ddf/guide_how_to_use_your_deck_as
 - https://github.com/dkarter/dotfiles
 - https://github.com/ryanoasis/nerd-fonts/tree/2.1.0
 - https://github.com/ycm-core/YouCompleteMe
+
+
