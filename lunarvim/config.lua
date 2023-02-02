@@ -58,6 +58,12 @@ lvim.builtin.which_key.mappings["b"]["q"] = {
 }
 
 
+-- Terminal
+lvim.builtin.which_key.mappings["t"] = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
+lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm direction=float<CR>"
+lvim.keys.term_mode["<C-t>"] = "<C-\\><C-n><C-w>l"
+
+
 
 lvim.builtin.which_key.mappings["<Space>"] = {
   name = "Select Window",
