@@ -29,6 +29,7 @@
 | `g` `r`                                              | Go to reference                           |
 | `<Space>`+`b`+`q`                                    | Close current tab                         |
 | `<Space>`+`<Shift>`+`S`                              | Load previous session                     |
+| `<Ctrl>` `t`                                         | Toggle show terminal                      |
 
 ### Lazy Git
 

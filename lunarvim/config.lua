@@ -8,6 +8,11 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.relativenumber = true
 vim.opt.clipboard = ""
+vim.opt.autowriteall = true
+vim.opt.mouse = "r"
+
+
+
 
 -- general
 lvim.log.level = "info"
@@ -23,11 +28,16 @@ lvim.format_on_save = {
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-
 lvim.keys.normal_mode["|"] = ":vsplit<CR>"
 lvim.keys.normal_mode["-"] = ":split<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
+
+-- need to set iterm cmd+c to send escape sequence esc+c
+-- lvim.keys.normal_mode["<C-c>"] = ":\"*y<CR>"
+local map = vim.keymap.set
+map("v", "<M-c>", "\"*y")
+
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -41,6 +51,12 @@ lvim.builtin.which_key.mappings["S"] = {
   S = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
   Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
+
+lvim.builtin.which_key.mappings["l"]["F"] = {
+  name = "Format",
+  j = { "<cmd>%!python3 -m json.tool<cr>gg=G<cr>", "Json" }
+}
+
 
 lvim.builtin.which_key.mappings["F"] = {
   name = "Find and Replace",
@@ -56,13 +72,32 @@ lvim.builtin.which_key.mappings["b"]["q"] = {
   name = "Close",
   { "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", "Close" }
 }
+lvim.keys.normal_mode["<C-w>"] = "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
 
+-- Code action
+-- if vim.bo.filetype == "java" then
+
+-- Filetype = vim.bo.filetype
+lvim.builtin.which_key.mappings["l"]["a"]["j"] = {
+  name = "Java Run file",
+  { "<cmd>! java %:p<CR>", "Run file" }
+}
+-- end
 
 -- Terminal
 lvim.builtin.which_key.mappings["t"] = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm direction=float<CR>"
 lvim.keys.term_mode["<C-t>"] = "<C-\\><C-n><C-w>l"
 
+-- Lazydocker
+local Terminal   = require('toggleterm.terminal').Terminal
+local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
+
+function Lazydocker_toggle()
+  lazydocker:toggle()
+end
+
+lvim.builtin.which_key.mappings["D"] = { "<cmd>lua Lazydocker_toggle() <CR>", "Docker" }
 
 
 lvim.builtin.which_key.mappings["<Space>"] = {
@@ -101,6 +136,26 @@ lvim.builtin.treesitter.auto_install = true
 
 -- --- disable automatic installation of servers
 -- lvim.lsp.installer.setup.automatic_installation = false
+
+
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig/configs')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.emmet_ls.setup({
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+  init_options = {
+    html = {
+      options = {
+        -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+        ["bem.enabled"] = true,
+      },
+    },
+  }
+})
 
 -- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
@@ -187,30 +242,28 @@ dap.configurations.go = {
 -- dlv dap -l 127.0.0.1:38697 --log --log-output="dap"
 
 
--- WINDOW Picker
--- An awesome method to jump to windows
--- local picker = require('window-picker')
+-- LSP
+lvim.lsp.installer.setup.ensure_installed = {
+  "sumneko_lua",
+  "jsonls",
+  "html",
+  "cssls",
+  "emmet_ls",
+  "tsserver",
+  "intelephense",
+  "tailwindcss",
+}
 
--- vim.keymap.set("n", "<leader>w", function()
---   local picked_window_id = picker.pick_window({
---     include_current_win = true
---   }) or vim.api.nvim_get_current_win()
---   vim.api.nvim_set_current_win(picked_window_id)
--- end, { desc = "Pick a window" })
+require("lvim.lsp.manager").setup("tailwindcss")
 
--- -- Swap two windows using the awesome window picker
--- local function swap_windows()
---   local window = picker.pick_window({
---     include_current_win = false
---   })
---   local target_buffer = vim.fn.winbufnr(window)
---   -- Set the target window to contain current buffer
---   vim.api.nvim_win_set_buf(window, 0)
---   -- Set current window to contain target buffer
---   vim.api.nvim_win_set_buf(0, target_buffer)
--- end
 
--- vim.keymap.set('n', '<leader>W', swap_windows, { desc = 'Swap windows' })
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+  { command = "stylua", filetype = { "lua" } },
+  { command = "prettier" },
+  { command = "blade_formatter", filetype = { "php", "blade", "blade.php" } },
+})
+
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
@@ -457,7 +510,6 @@ lvim.plugins = {
   {
     "lewis6991/gitsigns.nvim",
     config = function()
-      ---@diagnostic disable-next-line: redundant-parameter
       require('gitsigns').setup {
         current_line_blame = true,
         current_line_blame_opts = {
@@ -490,6 +542,14 @@ lvim.plugins = {
     ft = { "fugitive" }
   },
 
+  {
+    "tpope/vim-surround",
+
+    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
+    -- setup = function()
+    --  vim.o.timeoutlen = 500
+    -- end
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
@@ -502,8 +562,6 @@ lvim.plugins = {
 -- })
 --
 --
-
-
 lvim.autocommands = {
   {
     { "BufEnter", "Filetype" },
