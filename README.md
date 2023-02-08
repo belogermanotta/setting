@@ -38,6 +38,9 @@ bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/
 # Brew
 brew install lazygit lazydocker ripgrep fzf gnu-sed neovim node xcode git getantibody/tap/antibody powerlevel9k wget cmake putty kubectl redis-cli redis gradle redli helm terraform realpath jenv python jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font
 
+# Golang
+go install golang.org/x/tools/gopls@latest
+brew install golangci-lint
 
 
 ```
