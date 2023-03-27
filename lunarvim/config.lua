@@ -12,15 +12,34 @@ vim.opt.autowriteall = true
 vim.opt.mouse = "r"
 
 
+vim.g.syntastic_typescript_tsc_args = "--experimentalDecorators"
 
 
 -- general
+lvim.lsp.installer.setup.automatic_installation = true
 lvim.log.level = "info"
 lvim.format_on_save = {
   enabled = true,
-  pattern = "*.lua",
+  pattern = "*.lua,*.go,*.java,*.tsx,*.html,*.jsx,*js,*.css,*.ts",
   timeout = 1000,
+
 }
+
+-- FORMATTER
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "prettier",
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
+  {
+    { command = "goimports", filetypes = { "go" } },
+    { command = "gofmt", filetypes = { "go" } },
+  }
+}
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -33,10 +52,10 @@ lvim.keys.normal_mode["-"] = ":split<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
 
--- need to set iterm cmd+c to send escape sequence esc+c
--- lvim.keys.normal_mode["<C-c>"] = ":\"*y<CR>"
+-- need to set iterm cmd+c to send escape sequence esc+a, then map M-a to *y
+
 local map = vim.keymap.set
-map("v", "<M-c>", "\"*y")
+map("v", "<M-a>", "\"*y")
 
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -146,7 +165,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.emmet_ls.setup({
   -- on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+  filetypes = { 'html', 'typescriptreact', 'javascript', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
   init_options = {
     html = {
       options = {
@@ -588,4 +607,13 @@ lvim.autocommands = {
       end,
     },
   },
+  {
+    { "InsertLeave" },
+    {
+      desc = "Auto Save",
+      -- pattern = { "*.go", "*.js", "*.tsx", "*.jsx", "*.java", "*.kt", "*.md", "*.css", "*.html", "*.lua" },
+      pattern = { "*.*" },
+      command = "w",
+    },
+  }
 }
