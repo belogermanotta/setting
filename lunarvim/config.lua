@@ -15,8 +15,8 @@ vim.opt.mouse = "r"
 vim.g.syntastic_typescript_tsc_args = "--experimentalDecorators"
 
 
+
 -- general
-lvim.lsp.installer.setup.automatic_installation = true
 lvim.log.level = "info"
 lvim.format_on_save = {
   enabled = true,
@@ -24,9 +24,10 @@ lvim.format_on_save = {
   timeout = 1000,
 
 }
+-- to disable icons and use a minimalist setup, uncomment the following
+-- lvim.use_icons = false
 
 -- FORMATTER
-
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
@@ -35,13 +36,11 @@ formatters.setup {
     filetypes = { "typescript", "typescriptreact" },
   },
   {
-    { command = "goimports", filetypes = { "go" } },
-    { command = "gofmt", filetypes = { "go" } },
-  }
+    command = "goimports",
+    filetypes = { "go" },
+  },
 }
 
--- to disable icons and use a minimalist setup, uncomment the following
--- lvim.use_icons = false
 
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
@@ -53,7 +52,7 @@ lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
 
 -- need to set iterm cmd+c to send escape sequence esc+a, then map M-a to *y
-
+-- lvim.keys.normal_mode["<C-c>"] = ":\"*y<CR>"
 local map = vim.keymap.set
 map("v", "<M-a>", "\"*y")
 
@@ -321,6 +320,7 @@ lvim.plugins = {
   { "leoluz/nvim-dap-go" },
   { "mg979/vim-visual-multi" },
   { "jesseduffield/lazygit" },
+  { "nvim-tree/nvim-web-devicons" },
   {
     "windwp/nvim-spectre",
     event = "BufRead",
@@ -617,3 +617,4 @@ lvim.autocommands = {
     },
   }
 }
+
