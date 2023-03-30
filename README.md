@@ -30,6 +30,7 @@ Optional:
 - https://meetfranz.com/ - omni channel messenger / email
 - http://maddin.io/gestimer/ - small reminder
 - https://aptonic.com/ - dragdrop clipboard
+- https://tableplus.com/ - database client
 
 
 ### Installation commands
@@ -43,12 +44,17 @@ brew install --cask font-hack-nerd-font
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
 # Brew
-brew install lazygit lazydocker ripgrep fzf gnu-sed neovim git powerlevel9k wget cmake putty kubectl redis redis-pro gradle helm terraform jenv jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh go nodejs python cmake java
+brew install lazygit lazydocker ripgrep fzf gnu-sed neovim git powerlevel9k wget cmake putty kubectl redis redis-pro gradle helm terraform jenv jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh nodejs python cmake
 
 # Golang
+brew install go
 go install golang.org/x/tools/gopls@latest
 go install golang.org/x/tools/cmd/goimports@latest
 brew install golangci-lint
+
+# Java
+brew install java
+sudo ln -sfn $(brew --prefix java)/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # zsh, oh-my-zsh and terminal see terminal section
 
