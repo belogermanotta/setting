@@ -13,37 +13,57 @@
 - Update default setting
   - https://www.youtube.com/watch?v=psPgSN1bPLY
   
+
+
+## Apps:
+
+- https://iterm2.com/ - terminal
+- https://matthewpalmer.net/vanilla/ - task icon manager
+- https://rectangleapp.com/ - window manager
+- https://www.keka.io/en/ - file archiver
+- https://apps.apple.com/us/app/amphetamine/id937984704 - keep awake
 - Install system monitor in menu bar 
 run `brew install --cask stats` to install https://github.com/exelban/stats
 
-Productivity apps:
-
-- https://matthewpalmer.net/vanilla/ - task icon manager
-- https://rectangleapp.com/ - window manager
+Optional:
 - https://www.alfredapp.com/ - finder
 - https://meetfranz.com/ - omni channel messenger / email
-- https://www.keka.io/en/ - file archiver
-- https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html - monitoring
 - http://maddin.io/gestimer/ - small reminder
 - https://aptonic.com/ - dragdrop clipboard
-- https://apps.apple.com/us/app/amphetamine/id937984704 - keep awake
+
 
 ### Installation commands
 ```
+brew tap homebrew/cask-fonts
+brew tap sambadevi/powerlevel9k
 brew install --cask font-hack-nerd-font
+
 
 # https://www.lunarvim.org/docs/installation
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
 # Brew
-brew install lazygit lazydocker ripgrep fzf gnu-sed neovim node git powerlevel9k wget cmake putty kubectl redis redis-pro gradle helm terraform jenv python jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font
+brew install lazygit lazydocker ripgrep fzf gnu-sed neovim git powerlevel9k wget cmake putty kubectl redis redis-pro gradle helm terraform jenv jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh go nodejs python cmake java
 
 # Golang
 go install golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
 brew install golangci-lint
+
+# zsh, oh-my-zsh and terminal see terminal section
 
 
 ```
+
+##  Terminal Reference
+
+- https://github.com/haccks/zsh-config
+- https://github.com/hyperupcall/autoenv
+`brew install 'autoenv'`
+- https://github.com/dkarter/dotfiles
+- https://github.com/ryanoasis/nerd-fonts/tree/2.1.0
+- https://github.com/ycm-core/YouCompleteMe
+
 
 ## Jetbrains
 
@@ -138,13 +158,6 @@ https://www.reddit.com/r/SteamDeck/comments/v22ddf/guide_how_to_use_your_deck_as
 - https://flathub.org/apps/collection/popular
 - https://github.com/mikeroyal/Steam-Deck-Guide
 - https://romsmania.cc/
-
-## Useful Terminal Reference
-
-- https://github.com/haccks/zsh-config
-- https://github.com/dkarter/dotfiles
-- https://github.com/ryanoasis/nerd-fonts/tree/2.1.0
-- https://github.com/ycm-core/YouCompleteMe
 
 
 
