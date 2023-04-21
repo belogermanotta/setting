@@ -77,21 +77,21 @@ lvim.builtin.which_key.mappings["l"]["F"] = {
 }
 
 
-lvim.builtin.which_key.mappings["F"]           = {
+lvim.builtin.which_key.mappings["F"] = {
   name = "Find and Replace",
   { "<cmd>lua require('spectre').open()<cr>", "Find and Replace" }
 }
 
-lvim.builtin.which_key.mappings["g"]["b"]      = {
+lvim.builtin.which_key.mappings["g"]["b"] = {
   name = "Blame",
   { "<cmd>Git blame<cr>", "Git blame" }
 }
 
-lvim.builtin.which_key.mappings["b"]["q"]      = {
+lvim.builtin.which_key.mappings["b"]["q"] = {
   name = "Close",
   { "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", "Close" }
 }
-lvim.keys.normal_mode["<C-w>"]                 = "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
+lvim.keys.normal_mode["<C-w>"]            = "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
 
 -- Code action
 -- if vim.bo.filetype == "java" then
@@ -104,13 +104,13 @@ lvim.builtin.which_key.mappings["l"]["a"]["j"] = {
 -- end
 
 -- Terminal
-lvim.builtin.which_key.mappings["t"]           = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
-lvim.keys.normal_mode["<C-t>"]                 = ":ToggleTerm direction=float<CR>"
-lvim.keys.term_mode["<C-t>"]                   = "<C-\\><C-n><C-w>l"
+lvim.builtin.which_key.mappings["t"] = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
+lvim.keys.normal_mode["<C-t>"]       = ":ToggleTerm direction=float<CR>"
+lvim.keys.term_mode["<C-t>"]         = "<C-\\><C-n><C-w>l"
 
 -- Lazydocker
-local Terminal                                 = require('toggleterm.terminal').Terminal
-local lazydocker                               = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
+local Terminal   = require('toggleterm.terminal').Terminal
+local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
 
 function Lazydocker_toggle()
   lazydocker:toggle()
@@ -123,8 +123,8 @@ lvim.builtin.which_key.mappings["<Space>"] = {
   name = "Select Window",
   { function()
     local picked_window_id = require('window-picker').pick_window({
-          include_current_win = true
-        }) or vim.api.nvim_get_current_win()
+      include_current_win = true
+    }) or vim.api.nvim_get_current_win()
     vim.api.nvim_set_current_win(picked_window_id)
   end, "Select Window" }
 }
@@ -490,7 +490,7 @@ require("lvim.lsp.manager").setup("tailwindcss")
 
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-  { command = "stylua",          filetype = { "lua" } },
+  { command = "stylua", filetype = { "lua" } },
   { command = "prettier" },
   { command = "blade_formatter", filetype = { "php", "blade", "blade.php" } },
 })
@@ -572,44 +572,9 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("numb").setup {
-        show_numbers = true,    -- Enable 'number' for the window while peeking
+        show_numbers = true, -- Enable 'number' for the window while peeking
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
       }
-    end,
-  },
-  {
-    "echasnovski/mini.map",
-    branch = "stable",
-    config = function()
-      require('mini.map').setup()
-      local map = require('mini.map')
-      map.setup({
-        integrations = {
-          map.gen_integration.builtin_search(),
-          map.gen_integration.diagnostic({
-            error = 'DiagnosticFloatingError',
-            warn  = 'DiagnosticFloatingWarn',
-            info  = 'DiagnosticFloatingInfo',
-            hint  = 'DiagnosticFloatingHint',
-          }),
-        },
-        symbols = {
-          encode = map.gen_encode_symbols.dot('4x2'),
-        },
-        window = {
-          side = 'right',
-          width = 10, -- set to 1 for a pure scrollbar :)
-          winblend = 15,
-          show_integration_count = false,
-        },
-      })
-    end
-  },
-  {
-    "andymass/vim-matchup",
-    --    event = "CursorMoved",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
   {
@@ -676,14 +641,14 @@ lvim.plugins = {
         -- All these keys will be mapped to their corresponding default scrolling animation
         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
           '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true,            -- Hide cursor while scrolling
-        stop_eof = true,               -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false,   -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false,     -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true,   -- The cursor will keep on scrolling even if the window cannot scroll further
+        hide_cursor = true, -- Hide cursor while scrolling
+        stop_eof = true, -- Stop at <EOF> when scrolling downwards
+        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
         easing_function = "quadratic", -- Default easing function
-        pre_hook = nil,                -- Function to run before the scrolling animation starts
-        post_hook = nil,               -- Function to run after the scrolling animation ends
+        pre_hook = nil, -- Function to run before the scrolling animation starts
+        post_hook = nil, -- Function to run after the scrolling animation ends
       })
 
       local t    = {}
@@ -703,6 +668,34 @@ lvim.plugins = {
       t['zb']    = { 'zb', { '200' } }
 
       require('neoscroll.config').set_mappings(t)
+    end
+  },
+  {
+    "echasnovski/mini.map",
+    branch = "stable",
+    config = function()
+      require('mini.map').setup()
+      local map = require('mini.map')
+      map.setup({
+        integrations = {
+          map.gen_integration.builtin_search(),
+          map.gen_integration.diagnostic({
+            error = 'DiagnosticFloatingError',
+            warn  = 'DiagnosticFloatingWarn',
+            info  = 'DiagnosticFloatingInfo',
+            hint  = 'DiagnosticFloatingHint',
+          }),
+        },
+        symbols = {
+          encode = map.gen_encode_symbols.dot('4x2'),
+        },
+        window = {
+          side = 'right',
+          width = 10, -- set to 1 for a pure scrollbar :)
+          winblend = 15,
+          show_integration_count = false,
+        },
+      })
     end
   },
   {
@@ -827,5 +820,5 @@ lvim.autocommands = {
       pattern = { "*.*" },
       command = "w",
     },
-  }
+  },
 }
