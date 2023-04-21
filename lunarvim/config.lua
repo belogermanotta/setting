@@ -2,7 +2,6 @@
  THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
  `lvim` is the global options object
 ]]
-
 -- vim options
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -11,10 +10,11 @@ vim.opt.clipboard = ""
 vim.opt.autowriteall = true
 vim.opt.mouse = "r"
 
+vim.wo.wrap = true
+vim.wo.linebreak = true
+vim.wo.list = false
 
 vim.g.syntastic_typescript_tsc_args = "--experimentalDecorators"
-
-
 
 -- general
 lvim.log.level = "info"
@@ -22,7 +22,6 @@ lvim.format_on_save = {
   enabled = true,
   pattern = "*.lua,*.go,*.java,*.tsx,*.html,*.jsx,*js,*.css,*.ts",
   timeout = 1000,
-
 }
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -35,6 +34,7 @@ formatters.setup {
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
     filetypes = { "typescript", "typescriptreact" },
   },
+  -- go install golang.org/x/tools/cmd/goimports@latest
   {
     command = "goimports",
     filetypes = { "go" },
@@ -50,11 +50,12 @@ lvim.keys.normal_mode["|"] = ":vsplit<CR>"
 lvim.keys.normal_mode["-"] = ":split<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
+lvim.keys.normal_mode["<Esc>"] = ":noh<CR><Esc>"
 
 -- need to set iterm cmd+c to send escape sequence esc+a, then map M-a to *y
 -- lvim.keys.normal_mode["<C-c>"] = ":\"*y<CR>"
 local map = vim.keymap.set
-map("v", "<M-a>", "\"*y")
+map("v", "<M-b>", "\"*y")
 
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -76,21 +77,21 @@ lvim.builtin.which_key.mappings["l"]["F"] = {
 }
 
 
-lvim.builtin.which_key.mappings["F"] = {
+lvim.builtin.which_key.mappings["F"]           = {
   name = "Find and Replace",
   { "<cmd>lua require('spectre').open()<cr>", "Find and Replace" }
 }
 
-lvim.builtin.which_key.mappings["g"]["b"] = {
+lvim.builtin.which_key.mappings["g"]["b"]      = {
   name = "Blame",
   { "<cmd>Git blame<cr>", "Git blame" }
 }
 
-lvim.builtin.which_key.mappings["b"]["q"] = {
+lvim.builtin.which_key.mappings["b"]["q"]      = {
   name = "Close",
   { "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", "Close" }
 }
-lvim.keys.normal_mode["<C-w>"] = "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
+lvim.keys.normal_mode["<C-w>"]                 = "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
 
 -- Code action
 -- if vim.bo.filetype == "java" then
@@ -103,13 +104,13 @@ lvim.builtin.which_key.mappings["l"]["a"]["j"] = {
 -- end
 
 -- Terminal
-lvim.builtin.which_key.mappings["t"] = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
-lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm direction=float<CR>"
-lvim.keys.term_mode["<C-t>"] = "<C-\\><C-n><C-w>l"
+lvim.builtin.which_key.mappings["t"]           = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
+lvim.keys.normal_mode["<C-t>"]                 = ":ToggleTerm direction=float<CR>"
+lvim.keys.term_mode["<C-t>"]                   = "<C-\\><C-n><C-w>l"
 
 -- Lazydocker
-local Terminal   = require('toggleterm.terminal').Terminal
-local lazydocker = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
+local Terminal                                 = require('toggleterm.terminal').Terminal
+local lazydocker                               = Terminal:new({ cmd = "lazydocker", hidden = true, direction = "float" })
 
 function Lazydocker_toggle()
   lazydocker:toggle()
@@ -122,8 +123,8 @@ lvim.builtin.which_key.mappings["<Space>"] = {
   name = "Select Window",
   { function()
     local picked_window_id = require('window-picker').pick_window({
-      include_current_win = true
-    }) or vim.api.nvim_get_current_win()
+          include_current_win = true
+        }) or vim.api.nvim_get_current_win()
     vim.api.nvim_set_current_win(picked_window_id)
   end, "Select Window" }
 }
@@ -142,6 +143,218 @@ lvim.builtin.nvimtree.setup.actions = {
     resize_window = true
   }
 }
+lvim.builtin.nvimtree.setup.view.width = 50
+
+-- require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
+--   auto_reload_on_write = true,
+--   create_in_closed_folder = false,
+--   disable_netrw = false,
+--   hijack_cursor = false,
+--   hijack_netrw = true,
+--   hijack_unnamed_buffer_when_opening = false,
+--   ignore_buffer_on_setup = false,
+--   open_on_setup = false,
+--   open_on_setup_file = false,
+--   open_on_tab = false,
+--   ignore_buf_on_tab_change = {},
+--   sort_by = "name",
+--   root_dirs = {},
+--   prefer_startup_root = false,
+--   sync_root_with_cwd = false,
+--   reload_on_bufenter = false,
+--   respect_buf_cwd = false,
+--   on_attach = "disable",
+--   remove_keymaps = false,
+--   select_prompts = false,
+--   view = {
+--     adaptive_size = false,
+--     centralize_selection = false,
+--     width = 30,
+--     hide_root_folder = false,
+--     side = "left",
+--     preserve_window_proportions = false,
+--     number = false,
+--     relativenumber = false,
+--     signcolumn = "yes",
+--     mappings = {
+--       custom_only = false,
+--       list = {
+--         -- user mappings go here
+--       },
+--     },
+--     float = {
+--       enable = false,
+--       quit_on_focus_loss = true,
+--       open_win_config = {
+--         relative = "editor",
+--         border = "rounded",
+--         width = 30,
+--         height = 30,
+--         row = 1,
+--         col = 1,
+--       },
+--     },
+--   },
+--   renderer = {
+--     add_trailing = false,
+--     group_empty = false,
+--     highlight_git = false,
+--     full_name = false,
+--     highlight_opened_files = "none",
+--     root_folder_modifier = ":~",
+--     indent_width = 2,
+--     indent_markers = {
+--       enable = false,
+--       inline_arrows = true,
+--       icons = {
+--         corner = "└",
+--         edge = "│",
+--         item = "│",
+--         bottom = "─",
+--         none = " ",
+--       },
+--     },
+--     icons = {
+--       webdev_colors = true,
+--       git_placement = "before",
+--       padding = " ",
+--       symlink_arrow = " ➛ ",
+--       show = {
+--         file = true,
+--         folder = true,
+--         folder_arrow = true,
+--         git = true,
+--       },
+--       glyphs = {
+--         default = "",
+--         symlink = "",
+--         bookmark = "",
+--         folder = {
+--           arrow_closed = "",
+--           arrow_open = "",
+--           default = "",
+--           open = "",
+--           empty = "",
+--           empty_open = "",
+--           symlink = "",
+--           symlink_open = "",
+--         },
+--         git = {
+--           unstaged = "✗",
+--           staged = "✓",
+--           unmerged = "",
+--           renamed = "➜",
+--           untracked = "★",
+--           deleted = "",
+--           ignored = "◌",
+--         },
+--       },
+--     },
+--     special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+--     symlink_destination = true,
+--   },
+--   hijack_directories = {
+--     enable = true,
+--     auto_open = true,
+--   },
+--   update_focused_file = {
+--     enable = false,
+--     update_root = false,
+--     ignore_list = {},
+--   },
+--   ignore_ft_on_setup = {},
+--   system_open = {
+--     cmd = "",
+--     args = {},
+--   },
+--   diagnostics = {
+--     enable = false,
+--     show_on_dirs = false,
+--     debounce_delay = 50,
+--     icons = {
+--       hint = "",
+--       info = "",
+--       warning = "",
+--       error = "",
+--     },
+--   },
+--   filters = {
+--     dotfiles = false,
+--     custom = {},
+--     exclude = {},
+--   },
+--   filesystem_watchers = {
+--     enable = true,
+--     debounce_delay = 50,
+--   },
+--   git = {
+--     enable = true,
+--     ignore = true,
+--     show_on_dirs = true,
+--     timeout = 400,
+--   },
+--   actions = {
+--     use_system_clipboard = true,
+--     change_dir = {
+--       enable = true,
+--       global = false,
+--       restrict_above_cwd = false,
+--     },
+--     expand_all = {
+--       max_folder_discovery = 300,
+--       exclude = {},
+--     },
+--     file_popup = {
+--       open_win_config = {
+--         col = 1,
+--         row = 1,
+--         relative = "cursor",
+--         border = "shadow",
+--         style = "minimal",
+--       },
+--     },
+--     open_file = {
+--       quit_on_open = false,
+--       resize_window = true,
+--       window_picker = {
+--         enable = true,
+--         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+--         exclude = {
+--           filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+--           buftype = { "nofile", "terminal", "help" },
+--         },
+--       },
+--     },
+--     remove_file = {
+--       close_window = true,
+--     },
+--   },
+--   trash = {
+--     cmd = "gio trash",
+--     require_confirm = true,
+--   },
+--   live_filter = {
+--     prefix = "[FILTER]: ",
+--     always_show_folders = true,
+--   },
+--   log = {
+--     enable = false,
+--     truncate = false,
+--     types = {
+--       all = false,
+--       config = false,
+--       copy_paste = false,
+--       dev = false,
+--       diagnostics = false,
+--       git = false,
+--       profile = false,
+--       watcher = false,
+--     },
+--   },
+--   notify = {
+--     threshold = vim.log.levels.INFO,
+--   },
+-- } -- END_DEFAULT_OPTS
 
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
@@ -277,7 +490,7 @@ require("lvim.lsp.manager").setup("tailwindcss")
 
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-  { command = "stylua", filetype = { "lua" } },
+  { command = "stylua",          filetype = { "lua" } },
   { command = "prettier" },
   { command = "blade_formatter", filetype = { "php", "blade", "blade.php" } },
 })
@@ -359,7 +572,7 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("numb").setup {
-        show_numbers = true, -- Enable 'number' for the window while peeking
+        show_numbers = true,    -- Enable 'number' for the window while peeking
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
       }
     end,
@@ -411,7 +624,6 @@ lvim.plugins = {
           bo = {
             -- if the file type is one of following, the window will be ignored
             filetype = { "neo-tree", "neo-tree-popup", "notify", "quickfix" },
-
             -- if the buffer type is one of following, the window will be ignored
             buftype = { "terminal" },
           },
@@ -464,14 +676,14 @@ lvim.plugins = {
         -- All these keys will be mapped to their corresponding default scrolling animation
         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
           '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true, -- Hide cursor while scrolling
-        stop_eof = true, -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+        hide_cursor = true,            -- Hide cursor while scrolling
+        stop_eof = true,               -- Stop at <EOF> when scrolling downwards
+        use_local_scrolloff = false,   -- Use the local scope of scrolloff instead of the global scope
+        respect_scrolloff = false,     -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        cursor_scrolls_alone = true,   -- The cursor will keep on scrolling even if the window cannot scroll further
         easing_function = "quadratic", -- Default easing function
-        pre_hook = nil, -- Function to run before the scrolling animation starts
-        post_hook = nil, -- Function to run after the scrolling animation ends
+        pre_hook = nil,                -- Function to run before the scrolling animation starts
+        post_hook = nil,               -- Function to run after the scrolling animation ends
       })
 
       local t    = {}
@@ -617,4 +829,3 @@ lvim.autocommands = {
     },
   }
 }
-
