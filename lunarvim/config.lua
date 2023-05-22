@@ -50,7 +50,7 @@ lvim.keys.normal_mode["|"] = ":vsplit<CR>"
 lvim.keys.normal_mode["-"] = ":split<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
-lvim.keys.normal_mode["<Esc>"] = ":noh<CR><Esc>"
+lvim.keys.normal_mode["<Esc>"] = "<cmd>noh<CR><cmd>w<CR><Esc>"
 
 -- need to set iterm cmd+c to send escape sequence esc+a, then map M-a to *y
 -- lvim.keys.normal_mode["<C-c>"] = ":\"*y<CR>"
@@ -71,27 +71,42 @@ lvim.builtin.which_key.mappings["S"] = {
   Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
 
+-- https://github.com/MattesGroeger/vim-bookmarks
+--
+lvim.keys.normal_mode["ma"] = ":Telescope vim_bookmarks all<cr>"
+lvim.builtin.which_key.mappings["m"] = {
+  name = "Bookmark",
+  -- a = { "<cmd>BookmarkShowAll<cr>", "See All Bookmark" },
+  a = { "<cmd>Telescope vim_bookmarks all<cr>", "See All Bookmark" },
+  m = { "<cmd>BookmarkToggle<cr>", "Toggle Bookmark" },
+  c = { "<cmd>BookmarkClear<cr>", "Clear all this file" },
+  x = { "<cmd>BookmarkClearAll<cr>", "Clear all" },
+  n = { "<cmd>BookmarkNext<cr>", "Next" },
+  p = { "<cmd>BookmarkPrev<cr>", "Prev" },
+}
+
 lvim.builtin.which_key.mappings["l"]["F"] = {
   name = "Format",
   j = { "<cmd>%!python3 -m json.tool<cr>gg=G<cr>", "Json" }
 }
 
 
-lvim.builtin.which_key.mappings["F"] = {
+lvim.builtin.which_key.mappings["F"]           = {
   name = "Find and Replace",
   { "<cmd>lua require('spectre').open()<cr>", "Find and Replace" }
 }
 
-lvim.builtin.which_key.mappings["g"]["b"] = {
+lvim.builtin.which_key.mappings["g"]["b"]      = {
   name = "Blame",
   { "<cmd>Git blame<cr>", "Git blame" }
 }
 
-lvim.builtin.which_key.mappings["b"]["q"] = {
+lvim.builtin.which_key.mappings["b"]["q"]      = {
   name = "Close",
-  { "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>", "Close" }
+  { "<cmd>w<CR><cmd>bp<bar>sp<bar>bn<bar>bd<CR>", "Close" }
 }
-lvim.keys.normal_mode["<C-w>"]            = "<cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
+-- close tab
+lvim.keys.normal_mode["<C-w>"]                 = "<cmd>w<CR><cmd>bp<bar>sp<bar>bn<bar>bd<CR>"
 
 -- Code action
 -- if vim.bo.filetype == "java" then
@@ -104,9 +119,10 @@ lvim.builtin.which_key.mappings["l"]["a"]["j"] = {
 -- end
 
 -- Terminal
-lvim.builtin.which_key.mappings["t"] = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
-lvim.keys.normal_mode["<C-t>"]       = ":ToggleTerm direction=float<CR>"
-lvim.keys.term_mode["<C-t>"]         = "<C-\\><C-n><C-w>l"
+lvim.builtin.which_key.mappings["t"]           = { "<cmd>ToggleTerm direction=float<CR>", "Terminal" }
+lvim.keys.normal_mode["<C-t>"]                 = ":ToggleTerm direction=float<CR>"
+lvim.keys.term_mode["<C-t>"]                   = "<C-\\><C-n><C-w>l"
+
 
 -- Lazydocker
 local Terminal   = require('toggleterm.terminal').Terminal
@@ -123,15 +139,15 @@ lvim.builtin.which_key.mappings["<Space>"] = {
   name = "Select Window",
   { function()
     local picked_window_id = require('window-picker').pick_window({
-      include_current_win = true
-    }) or vim.api.nvim_get_current_win()
+          include_current_win = true
+        }) or vim.api.nvim_get_current_win()
     vim.api.nvim_set_current_win(picked_window_id)
   end, "Select Window" }
 }
 
 
 -- -- Change theme settings
--- lvim.colorscheme = "lunar"
+lvim.colorscheme = "tokyonight-night"
 
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
@@ -490,7 +506,7 @@ require("lvim.lsp.manager").setup("tailwindcss")
 
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-  { command = "stylua", filetype = { "lua" } },
+  { command = "stylua",          filetype = { "lua" } },
   { command = "prettier" },
   { command = "blade_formatter", filetype = { "php", "blade", "blade.php" } },
 })
@@ -498,6 +514,23 @@ formatters.setup({
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
+  -- BUILT IN
+  -- { "nvim-tree/nvim-web-devicons" },
+  --
+  -- {
+  --   "lewis6991/gitsigns.nvim",
+  --   config = function()
+  --     require('gitsigns').setup {
+  --       current_line_blame = true,
+  --       current_line_blame_opts = {
+  --         virt_text = true,
+  --         virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+  --         delay = 400,
+  --         ignore_whitespace = false,
+  --       },
+  --     }
+  --   end
+  -- },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
@@ -530,10 +563,31 @@ lvim.plugins = {
       }
     end,
   },
-  { "leoluz/nvim-dap-go" },
+  -- { "leoluz/nvim-dap-go" },
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
+  {
+    'ray-x/navigator.lua',
+    requires = {
+      { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' },
+      { 'neovim/nvim-lspconfig' },
+    },
+  },
+  { "MattesGroeger/vim-bookmarks" },
   { "mg979/vim-visual-multi" },
   { "jesseduffield/lazygit" },
-  { "nvim-tree/nvim-web-devicons" },
   {
     "windwp/nvim-spectre",
     event = "BufRead",
@@ -572,9 +626,44 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("numb").setup {
-        show_numbers = true, -- Enable 'number' for the window while peeking
+        show_numbers = true,    -- Enable 'number' for the window while peeking
         show_cursorline = true, -- Enable 'cursorline' for the window while peeking
       }
+    end,
+  },
+  {
+    "echasnovski/mini.map",
+    branch = "stable",
+    config = function()
+      require('mini.map').setup()
+      local map = require('mini.map')
+      map.setup({
+        integrations = {
+          map.gen_integration.builtin_search(),
+          map.gen_integration.diagnostic({
+            error = 'DiagnosticFloatingError',
+            warn  = 'DiagnosticFloatingWarn',
+            info  = 'DiagnosticFloatingInfo',
+            hint  = 'DiagnosticFloatingHint',
+          }),
+        },
+        symbols = {
+          encode = map.gen_encode_symbols.dot('4x2'),
+        },
+        window = {
+          side = 'right',
+          width = 10, -- set to 1 for a pure scrollbar :)
+          winblend = 15,
+          show_integration_count = false,
+        },
+      })
+    end
+  },
+  {
+    "andymass/vim-matchup",
+    --    event = "CursorMoved",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
   {
@@ -641,14 +730,14 @@ lvim.plugins = {
         -- All these keys will be mapped to their corresponding default scrolling animation
         mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
           '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true, -- Hide cursor while scrolling
-        stop_eof = true, -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+        hide_cursor = true,            -- Hide cursor while scrolling
+        stop_eof = true,               -- Stop at <EOF> when scrolling downwards
+        use_local_scrolloff = false,   -- Use the local scope of scrolloff instead of the global scope
+        respect_scrolloff = false,     -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        cursor_scrolls_alone = true,   -- The cursor will keep on scrolling even if the window cannot scroll further
         easing_function = "quadratic", -- Default easing function
-        pre_hook = nil, -- Function to run before the scrolling animation starts
-        post_hook = nil, -- Function to run after the scrolling animation ends
+        pre_hook = nil,                -- Function to run before the scrolling animation starts
+        post_hook = nil,               -- Function to run after the scrolling animation ends
       })
 
       local t    = {}
@@ -668,34 +757,6 @@ lvim.plugins = {
       t['zb']    = { 'zb', { '200' } }
 
       require('neoscroll.config').set_mappings(t)
-    end
-  },
-  {
-    "echasnovski/mini.map",
-    branch = "stable",
-    config = function()
-      require('mini.map').setup()
-      local map = require('mini.map')
-      map.setup({
-        integrations = {
-          map.gen_integration.builtin_search(),
-          map.gen_integration.diagnostic({
-            error = 'DiagnosticFloatingError',
-            warn  = 'DiagnosticFloatingWarn',
-            info  = 'DiagnosticFloatingInfo',
-            hint  = 'DiagnosticFloatingHint',
-          }),
-        },
-        symbols = {
-          encode = map.gen_encode_symbols.dot('4x2'),
-        },
-        window = {
-          side = 'right',
-          width = 10, -- set to 1 for a pure scrollbar :)
-          winblend = 15,
-          show_integration_count = false,
-        },
-      })
     end
   },
   {
@@ -732,20 +793,6 @@ lvim.plugins = {
     end,
   },
   {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require('gitsigns').setup {
-        current_line_blame = true,
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-          delay = 400,
-          ignore_whitespace = false,
-        },
-      }
-    end
-  },
-  {
     "tpope/vim-fugitive",
     cmd = {
       "G",
@@ -765,16 +812,21 @@ lvim.plugins = {
     },
     ft = { "fugitive" }
   },
-
   {
     "tpope/vim-surround",
-
     -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
     -- setup = function()
     --  vim.o.timeoutlen = 500
     -- end
   },
+  {
+    "tom-anders/telescope-vim-bookmarks.nvim",
+    config = function()
+      require('telescope').load_extension('vim_bookmarks')
+    end
+  },
 }
+
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
@@ -820,5 +872,5 @@ lvim.autocommands = {
       pattern = { "*.*" },
       command = "w",
     },
-  },
+  }
 }
