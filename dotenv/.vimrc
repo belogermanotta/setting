@@ -6,11 +6,11 @@
 " https://github.com/preservim/nerdtree
 " https://github.com/mg979/vim-visual-multi
 " https://github.com/easymotion/vim-easymotion
-" https://github.com/neoclide/coc.nvim
 " https://github.com/junegunn/fzf.vim
+" https://github.com/neoclide/coc.nvim
 " https://github.com/tpope/vim-surround
-" https://github.com/tpope/vim-commentary
 " https://github.com/glepnir/dashboard-nvim
+" https://github.com/tpope/vim-commentary
 " https://github.com/vim-airline/vim-airline
 " https://github.com/preservim/tagbar
 " https://github.com/dkarter/bullets.vim
@@ -95,9 +95,8 @@ endif
 " longest common part, then all.
 set wildmode=longest,full
 set hidden             " Change buffer - without saving
-set history=768        " Number of things to remember in history.
 set confirm            " Enable error files & error jumping.
-"set clipboard+=unnamed " Yanks go on clipboard instead.
+set clipboard=
 set autowrite          " Writes on make/shell commands
 set timeoutlen=400     " Time to wait for a command (after leader for example).
 set ttimeout
@@ -204,10 +203,10 @@ command! Q q
 " Mappings
 " ----------------------------------------
 
-" Set leader to ,
+" Set leader to space
 " Note: This line MUST come before any <leader> mappings
-let mapleader=','
-let g:mapleader=','
+let mapleader='<Space>'
+let g:mapleader='<Space>'
 let maplocalleader = ' '
 
 
@@ -215,8 +214,6 @@ let maplocalleader = ' '
 " Regular Mappings
 " ---------------
 
-" Clear highlight when press escape
-nnoremap <esc> :noh<return><esc>
 
 " Use ; for : in normal and visual mode, less keystrokes
 nnoremap ; :
@@ -241,19 +238,27 @@ nnoremap vy ggVG
 " vnoremap x "_x
 " nnoremap X "_X
 " vnoremap X "_X
-" 
-" nnoremap <leader>d d
-" vnoremap <leader>d d
-" nnoremap <leader>D D
-" vnoremap <leader>D D
-" nnoremap <leader>c c
-" vnoremap <leader>c c
-" nnoremap <leader>C C
-" vnoremap <leader>C C
-" nnoremap <leader>x x
-" vnoremap <leader>x x
-" nnoremap <leader>X X
-" vnoremap <leader>X X
+
+nnoremap <leader>d d
+vnoremap <leader>d d
+nnoremap <leader>D D
+vnoremap <leader>D D
+nnoremap <leader>c c
+vnoremap <leader>c c
+nnoremap <leader>C C
+vnoremap <leader>C C
+nnoremap <leader>x x
+vnoremap <leader>x x
+nnoremap <leader>X X
+vnoremap <leader>X X
+
+" Esc-b to clipboard (cmd+c)
+
+vnoremap <M-b> "*y
+
+
+" Clear highlight when press escape
+nnoremap <esc> :noh<return><esc>
 
 " Make Y behave like other capital commands.
 " Hat-tip http://vimbits.com/bits/11
