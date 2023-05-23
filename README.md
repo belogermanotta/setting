@@ -166,4 +166,8 @@ https://www.reddit.com/r/SteamDeck/comments/v22ddf/guide_how_to_use_your_deck_as
 - https://romsmania.cc/
 
 
+#### Amphetamine
+
+https://apps.apple.com/gb/app/amphetamine/id937984704?mt=12
+
 
