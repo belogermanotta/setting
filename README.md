@@ -35,6 +35,8 @@ Optional:
 
 ### Installation commands
 ```
+xcode-select --install
+
 brew tap homebrew/cask-fonts
 brew tap sambadevi/powerlevel9k
 brew install --cask font-hack-nerd-font
