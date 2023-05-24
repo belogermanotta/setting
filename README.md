@@ -46,8 +46,12 @@ brew install --cask font-hack-nerd-font
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
 # Brew
-brew install lazygit lazydocker ripgrep fzf gnu-sed neovim git powerlevel9k wget cmake putty kubectl redis gradle helm terraform jenv jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh nodejs python cmake vim
+brew install lazygit lazydocker ripgrep fzf gnu-sed neovim git powerlevel9k wget cmake putty kubectl redis gradle helm terraform jenv jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh nodejs python cmake vim docker-compose
+
+# Tools
 brew install redis-pro
+brew install --cask docker
+
 
 # Golang
 brew install go
