@@ -50,7 +50,8 @@ lvim.keys.normal_mode["|"] = ":vsplit<CR>"
 lvim.keys.normal_mode["-"] = ":split<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":bnext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":bprev<CR>"
-lvim.keys.normal_mode["<Esc>"] = "<cmd>noh<CR><cmd>w<CR><Esc>"
+lvim.keys.normal_mode["<Esc>"] = "<cmd>noh<CR><Esc>"
+lvim.keys.normal_mode["o"] = "<cmd>w<CR>o"
 
 -- need to set iterm cmd+c to send escape sequence esc+a, then map M-a to *y
 -- lvim.keys.normal_mode["<C-c>"] = ":\"*y<CR>"
