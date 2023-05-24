@@ -375,8 +375,7 @@ lvim.builtin.nvimtree.setup.view.width = 50
 
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
-
--- lvim.builtin.treesitter.matchup.enable = true
+lvim.builtin.treesitter.matchup.enable = true
 
 -- lvim.builtin.treesitter.ignore_install = { "haskell" }
 
@@ -492,7 +491,7 @@ dap.configurations.go = {
 
 -- LSP
 lvim.lsp.installer.setup.ensure_installed = {
-  "sumneko_lua",
+  "lua_ls",
   "jsonls",
   "html",
   "cssls",
@@ -581,7 +580,7 @@ lvim.plugins = {
   },
   {
     'ray-x/navigator.lua',
-    requires = {
+    dependencies = {
       { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' },
       { 'neovim/nvim-lspconfig' },
     },
@@ -660,13 +659,13 @@ lvim.plugins = {
       })
     end
   },
-  {
-    "andymass/vim-matchup",
-    --    event = "CursorMoved",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
-  },
+  -- {
+  --    "andymass/vim-matchup",
+  --   --    event = "CursorMoved",
+  --   setup = function()
+  --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+  --   end,
+  -- },
   {
     "s1n7ax/nvim-window-picker",
     version = "1.*",
@@ -875,3 +874,4 @@ lvim.autocommands = {
     },
   }
 }
+
