@@ -88,9 +88,6 @@ curl https://sh.rustup.rs -sSf | sh
 brew install go
 go install golang.org/x/tools/gopls@latest
 go install golang.org/x/tools/cmd/goimports@latest
-p
-go install golang.org/x/tools/cmd/goimports@latest
-
 brew install golangci-lint
 
 # Java
