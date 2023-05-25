@@ -1,3 +1,4 @@
+-- https://github.com/belogermanotta/setting/blob/master/lunarvim/config.lua
 --[[
  THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
  `lvim` is the global options object
@@ -376,7 +377,7 @@ lvim.builtin.nvimtree.setup.view.width = 50
 -- Automatically install missing parsers when entering buffer
 lvim.builtin.treesitter.auto_install = true
 
--- lvim.builtin.treesitter.matchup.enable = true
+lvim.builtin.treesitter.matchup.enable = true
 
 -- lvim.builtin.treesitter.ignore_install = { "haskell" }
 
@@ -404,6 +405,8 @@ lspconfig.emmet_ls.setup({
     },
   }
 })
+
+lspconfig.gopls.setup{}
 
 -- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
@@ -492,7 +495,8 @@ dap.configurations.go = {
 
 -- LSP
 lvim.lsp.installer.setup.ensure_installed = {
-  "sumneko_lua",
+  "lua_ls",
+  "gopls",
   "jsonls",
   "html",
   "cssls",
@@ -581,7 +585,7 @@ lvim.plugins = {
   },
   {
     'ray-x/navigator.lua',
-    requires = {
+    dependencies = {
       { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' },
       { 'neovim/nvim-lspconfig' },
     },
@@ -659,13 +663,6 @@ lvim.plugins = {
         },
       })
     end
-  },
-  {
-    "andymass/vim-matchup",
-    --    event = "CursorMoved",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
   },
   {
     "s1n7ax/nvim-window-picker",
@@ -875,3 +872,4 @@ lvim.autocommands = {
     },
   }
 }
+

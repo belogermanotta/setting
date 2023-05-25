@@ -78,16 +78,27 @@ sudo rm -Rf ~/Library/Saved\ Application\ State/com.electron.docker-frontend.sav
 sudo rm -f ~/Library/Preferences/com.electron.docker-frontend.plist
 brew install --cask docker
 
+# Pip
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py\npython3 get-pip.py\n
+
+# Rust
+curl https://sh.rustup.rs -sSf | sh
 
 # Golang
 brew install go
 go install golang.org/x/tools/gopls@latest
 go install golang.org/x/tools/cmd/goimports@latest
+p
+go install golang.org/x/tools/cmd/goimports@latest
+
 brew install golangci-lint
 
 # Java
 brew install java
 sudo ln -sfn $(brew --prefix java)/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+# Lvim
+# https://www.lunarvim.org/docs/installation
 
 # zsh, oh-my-zsh and terminal see terminal section
 
