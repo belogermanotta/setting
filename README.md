@@ -100,6 +100,26 @@ sudo ln -sfn $(brew --prefix java)/libexec/openjdk.jdk /Library/Java/JavaVirtual
 # zsh, oh-my-zsh and terminal see terminal section
 
 
+# Git
+
+git config --global user.name "<name>"
+git config --global alias.co checkout
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+git config pull.rebase true
+git config --global mergetool.keepBackup false
+
+# Git mergetool
+# git mergetool --tool nvimdiff2
+# https://gist.github.com/karenyyng/f19ff75c60f18b4b8149
+# ]c and [c
+# :wqa
+# git rebase –continue
+#if &diff
+#    map <leader>1 :diffget LOCAL<CR>
+#    map <leader>2 :diffget BASE<CR>
+#    map <leader>3 :diffget REMOTE<CR>
+#endif
+
 ```
 
 ##  Terminal Reference
