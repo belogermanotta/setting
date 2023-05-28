@@ -1,0 +1,17 @@
+[core]
+	excludesfile = ~/.gitignore
+	autocrlf = input
+[credential]
+	helper = store
+[safe]
+	directory = /usr/local/Homebrew
+[mergetool]
+	keepBackup = false
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+    tool = nvimdiff2
