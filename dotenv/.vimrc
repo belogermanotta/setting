@@ -1,5 +1,4 @@
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Important plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -26,11 +25,6 @@ set history=5000
 filetype plugin on
 filetype indent on
 
-" Fast saving
-nmap <leader>w :w!<cr>
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,6 +203,11 @@ let mapleader='<Space>'
 let g:mapleader='<Space>'
 let maplocalleader = ' '
 
+" Fast saving
+nmap <leader>w :w!<cr>
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " ---------------
 " Regular Mappings
