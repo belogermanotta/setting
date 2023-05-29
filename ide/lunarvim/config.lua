@@ -656,9 +656,10 @@ lvim.plugins = {
           encode = map.gen_encode_symbols.dot('4x2'),
         },
         window = {
+          focusable = false,
           side = 'right',
-          width = 10, -- set to 1 for a pure scrollbar :)
-          winblend = 15,
+          width = 4, -- set to 1 for a pure scrollbar :)
+          winblend = 95,
           show_integration_count = false,
         },
       })
@@ -872,4 +873,5 @@ lvim.autocommands = {
     },
   }
 }
+
 
