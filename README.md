@@ -21,6 +21,7 @@
 - https://matthewpalmer.net/vanilla/ - task icon manager
 - https://rectangleapp.com/ - window manager
 - https://www.keka.io/en/ - file archiver
+- https://get-switch.app/ - app switcher
 - https://apps.apple.com/us/app/amphetamine/id937984704 - keep awake
 - Install system monitor in menu bar 
 run `brew install --cask stats` to install https://github.com/exelban/stats
