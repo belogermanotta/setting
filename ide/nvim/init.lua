@@ -7,8 +7,7 @@ vim.g.python3_host_prog = [[C:\Users\Kobe\nvim-py312\Scripts\python.exe]]
 vim.opt.relativenumber = false
 
 require("lazy").setup({
-  -- other plugins...
-
+  { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
     "williamboman/mason.nvim",
     version = "*", -- always use latest stable release
