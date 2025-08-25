@@ -26,7 +26,6 @@ require("lazy").setup({
       })
     end,
   },
-
   {
     "williamboman/mason-lspconfig.nvim",
     version = "*",
