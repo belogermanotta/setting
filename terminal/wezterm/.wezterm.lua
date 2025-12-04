@@ -9,10 +9,13 @@ wezterm.on("gui-startup", function()
 end)
 
 return {
+	hide_tab_bar_if_only_one_tab = true,
+	animation_fps = 120,
+	scrollback_lines = 50000,
+	default_cursor_style = "BlinkingBar",
 	window_frame = {
 		font_size = 17.0,
 	},
-	window_scale = 1.1,
 	font_size = 18.0,
 	initial_cols = 200,
 	initial_rows = 60,
