@@ -1,17 +1,23 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
-vim.g.python3_host_prog = [[C:\Users\Kobe\nvim-py312\Scripts\python.exe]]
+vim.g.neo_tree_remove_legacy_commands = 1
 
--- Disable relative line numbers
-vim.opt.relativenumber = false
+vim.cmd("colorscheme tokyonight-night")
+-- vim.cmd("colorscheme catppuccin-mocha")
+
+-- require("neo-tree").setup({
+--   window = {
+--     width = 50, -- set explorer width
+--   },
+-- })
 
 require("lazy").setup({
   { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
     "williamboman/mason.nvim",
     version = "*", -- always use latest stable release
-    build = ":MasonUpdate", -- keep Mason's package registry up to date
+
     config = function()
       require("mason").setup({
         -- Mason settings (optional)

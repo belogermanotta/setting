@@ -10,9 +10,10 @@ return {
         end,
         dim = 0.18,
         -- cleaning_interval = 1250,
-        cleaning_interval = 5250,
+        cleaning_intervl = 8250,
       },
-      trigger_events = { "InsertLeave", "TextChanged" }, -- save on leave insert or text change
+      -- trigger_events = { "InsertLeave", "TextChanged" }, -- save on leave insert or text change
+      trigger_events = { "InsertLeave" }, -- save on leave insert or text change
       condition = function(buf)
         local fn = vim.fn
         if fn.getbufvar(buf, "&modifiable") == 1 and fn.expand("%") ~= "" then
@@ -22,7 +23,7 @@ return {
       end,
       write_all_buffers = false,
       -- debounce_delay = 135, -- ms to wait before writing
-      debounce_delay = 2135, -- ms to wait before writing
+      debounce_delay = 6135, -- ms to wait before writing
     })
   end,
 }
