@@ -1,0 +1,36 @@
+export GOPATH=$HOME/go
+#export GOROOT=$HOME/go
+export GOBIN=$GOPATH/bin
+export GOSRC=$GOPATH/src
+export PATH=$PATH:$GOPATH/bin
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=$PATH:~/.composer/vendor/bin
+export PATH=$PATH:/usr/local/bin/python3
+export PATH=$PATH:~/envscript
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/apache-maven-3.6.3/bin
+export PATH=$PATH:~/miniconda3/bin
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export WORK=/mnt/d/WORK
+
+export PB_REL="https://github.com/protocolbuffers/protobuf/releases"
+
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+# Create x86 conda environment
+create_x86_conda_environment() {
+  # example usage: create_x86_conda_environment myenv_x86 python=3.9
+  CONDA_SUBDIR=osx-64 conda create -n $@
+  conda activate $1
+}
+# Create ARM conda environment
+create_ARM_conda_environment() {
+  # example usage: create_ARM_conda_environment myenv_x86 python=3.9
+  CONDA_SUBDIR=osx-arm64 conda create -n $@
+  conda activate $1
+}
+
+# Auto-cd to WORK if starting in home directory
+if [ "$PWD" = "$HOME" ]; then
+  cd "$WORK"
+fi
