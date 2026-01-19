@@ -111,6 +111,31 @@ plugins=(
   composer
   zsh-syntax-highlighting
   zsh-autosuggestions
+
+
+  # Navigation & Files
+  z                    # Jump to frecent directories
+  fzf                  # Fuzzy finder integration
+  sudo                 # Press ESC twice to add sudo
+  extract              # Extract any archive with 'extract <file>'
+  
+  # Development
+  docker               # Docker completions
+  docker-compose       # Docker Compose completions
+  golang               # Go aliases and completions
+  npm                  # npm completions
+  node                 # Node.js completions
+  
+  # Productivity
+  history              # Better history commands
+  copypath             # Copy current path to clipboard
+  copyfile             # Copy file contents to clipboard
+  web-search           # Search from terminal (google, duckduckgo, etc)
+  
+  # System
+  command-not-found    # Suggests packages when command not found
+  systemd              # systemd aliases
+  aliases              # Show all aliases with 'acs'
 )
 
 source $ZSH/oh-my-zsh.sh
