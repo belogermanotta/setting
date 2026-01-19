@@ -128,7 +128,7 @@ plugins=(
   
   # Productivity
   history              # Better history commands
-  copypath             # Copy current path to clipboard
+  copypath             # Copy current path to clipboard (only ubuntu)
   copyfile             # Copy file contents to clipboard
   web-search           # Search from terminal (google, duckduckgo, etc)
   
