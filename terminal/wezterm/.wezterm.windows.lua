@@ -10,11 +10,18 @@ config.colors = {
 
 config.enable_bracketed_paste = false
 config.enable_tab_bar = true
-config.initial_rows = 40
-config.initial_cols = 150
+-- config.initial_rows = 40
+-- config.initial_cols = 150
+
+wezterm.on("gui-startup", function()
+	local tab, pane, window = mux.spawn_window({})
+	window:gui_window():maximize()
+end)
 
 --config.window_decorations = "NONE"
 config.window_decorations = "RESIZE"
+
+config.hide_mouse_cursor_when_typing = false
 
 config.keys = {
 	{

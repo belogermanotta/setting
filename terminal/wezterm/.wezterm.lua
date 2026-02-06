@@ -8,6 +8,8 @@ wezterm.on("gui-startup", function()
 	window:gui_window():maximize()
 end)
 
+config.hide_mouse_cursor_when_typing = false
+
 return {
 	hide_tab_bar_if_only_one_tab = true,
 	animation_fps = 120,
