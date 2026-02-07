@@ -52,12 +52,12 @@
               "input": 0,
               "output": 0
             },
-            "id": "dolphin-llama3:8b",
+            "id": "research-agent",
             "input": [
               "text"
             ],
             "maxTokens": 16384,
-            "name": "dolphin-llama3:8b",
+            "name": "research-agent",
             "reasoning": false
           },
           {
@@ -84,9 +84,9 @@
     "defaults": {
       "model": {
         "fallbacks": [
-          "ollama/qwen3:14b"
+          "openai-codex/gpt-5.1"
         ],
-        "primary": "openai-codex/gpt-5.1"
+        "primary": "ollama/research-agent"
       },
       "models": {
         "anthropic/claude-sonnet-4-5": {
@@ -95,8 +95,8 @@
         "anthropic/claude-opus-4-5": {
           "alias": "opus"
         },
-        "ollama/dolphin-llama3:8b": {
-          "alias": "dolphin"
+        "ollama/research-agent": {
+          "alias": "research"
         },
         "ollama/qwen3:14b": {
           "alias": "qwen"
@@ -125,13 +125,15 @@
     "exec": {
       "host": "gateway",
       "security": "full",
-      "ask": "off"
+      "ask": "off",
+      "elevated": true
     },
     "elevated": {
       "enabled": true,
       "allowFrom": {
         "discord": [
-          "419181372100313102"
+          "419181372100313102",
+          "419407436965871616"
         ],
         "whatsapp": [
           "+19052081919"
@@ -170,7 +172,8 @@
       "guilds": {
         "1058609723886288976": {
           "users": [
-            "419181372100313102"
+            "419181372100313102",
+            "419407436965871616"
           ],
           "channels": {
             "oakes": {
