@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "socket": {
+    "path": "/home/kobe/.openclaw/exec-approvals.sock",
+    "token": "OqcuoT8oYJ09eCPTUgK77frDYlp7ENqE"
+  },
+  "defaults": {},
+  "agents": {}
+}

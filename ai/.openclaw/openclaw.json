@@ -1,0 +1,214 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.3-1",
+    "lastTouchedAt": "2026-02-06T18:43:33.223Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-06T18:43:33.219Z",
+    "lastRunVersion": "2026.2.3-1",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434/v1",
+        "apiKey": "ollama-local",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "kimi-k2.5:cloud",
+            "name": "kimi-k2.5:cloud",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 16384
+          },
+          {
+            "contextWindow": 131072,
+            "cost": {
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "input": 0,
+              "output": 0
+            },
+            "id": "dolphin-llama3:8b",
+            "input": [
+              "text"
+            ],
+            "maxTokens": 16384,
+            "name": "dolphin-llama3:8b",
+            "reasoning": false
+          },
+          {
+            "id": "qwen3:14b",
+            "name": "qwen3:14b",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 16384
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "fallbacks": [
+          "ollama/qwen3:14b"
+        ],
+        "primary": "openai-codex/gpt-5.1"
+      },
+      "models": {
+        "anthropic/claude-sonnet-4-5": {
+          "alias": "sonnet"
+        },
+        "anthropic/claude-opus-4-5": {
+          "alias": "opus"
+        },
+        "ollama/dolphin-llama3:8b": {
+          "alias": "dolphin"
+        },
+        "ollama/qwen3:14b": {
+          "alias": "qwen"
+        },
+        "ollama/kimi-k2.5:cloud": {
+          "alias": "kimi"
+        },
+        "openai-codex/gpt-5.1": {
+          "alias": "codex"
+        }
+      },
+      "workspace": "/home/kobe/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "maxConcurrent": 6,
+      "subagents": {
+        "maxConcurrent": 6
+      },
+      "sandbox": {
+        "mode": "all"
+      }
+    }
+  },
+  "tools": {
+    "exec": {
+      "host": "gateway",
+      "security": "full",
+      "ask": "off"
+    },
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "discord": [
+          "419181372100313102"
+        ],
+        "whatsapp": [
+          "+19052081919"
+        ]
+      }
+    }
+  },
+  "messages": {
+    "responsePrefix": "[Kobe]",
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto"
+  },
+  "channels": {
+    "whatsapp": {
+      "dmPolicy": "allowlist",
+      "selfChatMode": true,
+      "allowFrom": [
+        "+19052081919"
+      ],
+      "groupPolicy": "allowlist",
+      "mediaMaxMb": 50,
+      "actions": {
+        "reactions": true,
+        "sendMessage": true,
+        "polls": true
+      },
+      "debounceMs": 0
+    },
+    "discord": {
+      "token": "token",
+      "allowBots": true,
+      "groupPolicy": "allowlist",
+      "guilds": {
+        "1058609723886288976": {
+          "users": [
+            "419181372100313102"
+          ],
+          "channels": {
+            "oakes": {
+              "allow": true,
+              "requireMention": false,
+              "enabled": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "9aa1db76cd52f27f7bce11a534b49db8efbbdf314f5992c2"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "discord": {
+        "enabled": true
+      },
+      "whatsapp": {
+        "enabled": true
+      }
+    }
+  }
+}
