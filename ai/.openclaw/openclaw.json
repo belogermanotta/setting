@@ -84,9 +84,9 @@
     "defaults": {
       "model": {
         "fallbacks": [
-          "openai-codex/gpt-5.1"
+          "ollama/kimi-k2.5:cloud"
         ],
-        "primary": "ollama/research-agent"
+        "primary": "openai-codex/gpt-5.1"
       },
       "models": {
         "anthropic/claude-sonnet-4-5": {
@@ -176,6 +176,11 @@
           ],
           "channels": {
             "oakes": {
+              "allow": true,
+              "requireMention": false,
+              "enabled": true
+            },
+            "stock-ai-advice": {
               "allow": true,
               "requireMention": false,
               "enabled": true

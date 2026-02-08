@@ -4,7 +4,7 @@
       "containerName": "openclaw-sbx-agent-main-0d71ad7a",
       "sessionKey": "agent:main",
       "createdAtMs": 1770395829347,
-      "lastUsedAtMs": 1770438235678,
+      "lastUsedAtMs": 1770522727363,
       "image": "openclaw-sandbox:bookworm-slim",
       "configHash": "d95d71fed2b903999d4250e42ded4893abb07e4e"
     }
