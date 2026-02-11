@@ -10,7 +10,7 @@ return {
         end,
         dim = 0.18,
         -- cleaning_interval = 1250,
-        cleaning_intervl = 8250,
+        cleaning_interval = 8250,
       },
       -- trigger_events = { "InsertLeave", "TextChanged" }, -- save on leave insert or text change
       trigger_events = { "InsertLeave" }, -- save on leave insert or text change
