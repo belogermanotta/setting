@@ -1,15 +1,20 @@
+
+cp oc-shell-command-watcher.py ~/.local/bin && chmod +x ~/.local/bin/oc-shell-command-watcher.py
+cp oc-drive-host-to-sandbox.sh ~/.local/bin && chmod +x ~/.local/bin/oc-drive-host-to-sandbox.sh
+cp oc-drive-sandbox-to-host.sh ~/.local/bin && chmod +x ~/.local/bin/oc-drive-sandbox-to-host.sh
+
 ### 1) Create shared dirs (host + sandbox)
 
  On your laptop (host):
 
  ```bash
-   mkdir -p ~/openclaw-drive/{screenshots,download,scripts,log,notes}
+   mkdir -p ~/openclaw-drive/{screenshots,downloads,scripts,logs,notes,agent-out/requests}
  ```
 
  In my sandbox:
 
  ```bash
-   mkdir -p ~/.openclaw/sandboxes/agent-main-0d71ad7a/openclaw-drive/{screenshots,download,scripts,log,notes}
+   mkdir -p ~/.openclaw/sandboxes/agent-main-0d71ad7a/openclaw-drive/{screenshots,downloads,scripts,logs,notes,agent-out/requests}
  ```
 
  We’ll use:

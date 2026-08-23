@@ -8,5 +8,5 @@ mkdir -p "$SBOX_OUT" "$HOST_OUT"
 
 while true; do
   rsync -a --delete "$SBOX_OUT/" "$HOST_OUT/"
-  sleep 15
+  sleep 3
 done
