@@ -54,6 +54,9 @@ These are enforced by `AGENTS.md` + `MEMORY.md`, but worth knowing:
 - **The calendar sync** lives at `Resources/scripts/calendar_to_daily.py` —
   idempotent, safe to run anytime:
   `python3 Resources/scripts/calendar_to_daily.py`
+- **Optional:** a Google Calendar MCP server can be added to the agent for
+  enrichment (summaries/briefings) — see `onboarding/macos/README.md` §6b.
+  The script stays the deterministic backbone.
 
 ## 5. Policy guardrails
 

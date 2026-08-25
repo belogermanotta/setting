@@ -156,6 +156,33 @@ machine does. See **[AI-AGENT.md](AI-AGENT.md)** for: which agent to pick
 > ⚠️ Corporate policy first — if IT bans external AI tools, skip this section;
 > nothing else in the playbook needs an agent.
 
+### 6b. Optional: Claude + Google Calendar MCP (enrichment layer)
+
+The sync script dumps raw events/tasks deterministically at 00:00. If your AI
+agent gains real calendar access, layer summarization on top of it.
+
+**Setup (Claude Code example):**
+1. Pick a maintained **Google Calendar MCP server** (community npm/Python
+   packages — check the project's own instructions; they vary)
+2. Register it with Claude Code:
+   ```bash
+   claude mcp add google-calendar -- npx -y <server-package>
+   ```
+3. **OAuth**: the server runs its own consent dance on first use — same flow
+   you did for the sync script (Advanced → continue → paste code back). The
+   existing `client_secret.json` works as the OAuth client.
+4. Verify: ask Claude Code *"what's on my calendar today?"* — it should list
+   real events.
+
+**What it unlocks (the script can't):**
+- "Turn today's events into a briefing at the top of the daily note"
+- "Prep three bullets for the 2pm review"
+- Priority ordering, agenda drafting, "what did I miss"
+
+**The rule:** the script stays the backbone (deterministic 00:00 sync, works
+without any agent); Claude enriches on top, never replaces it. Corporate AI
+policy still applies (see section 6 warning).
+
 ## 7. Daily workflow
 
 1. Open Obsidian → today's note already exists with calendar events + tasks
