@@ -1,0 +1,47 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "LiAstroid",
+      "LiPencilLine",
+      "LiBackpack",
+      "LiBookOpen",
+      "LiBriefcaseBusiness"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": false,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false,
+    "useInternalPlugins": false
+  },
+  "AI-notes": "LiBrain",
+  "Work": "LiBriefcaseBusiness",
+  "_Werlion": "LiArmchair",
+  "_Werlion/Excalidraw": "LiPencil",
+  "Data": "LiDatabaseZap",
+  "Resources": "LiDatabaseZap",
+  "_Werlion/AI-generated": "LiBrain",
+  "_Werlion/AI-generated/Study": "LiBookOpen",
+  "Templates": "LiBackpack",
+  "Daily Log": "LiPencilLine"
+}
