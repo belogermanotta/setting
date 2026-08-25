@@ -86,6 +86,7 @@ done
 # --- 4. nvim + wezterm ---------------------------------------------------------
 link "$REPO_DIR/ide/nvimlinux/nvim" "$HOME/.config/nvim"
 link "$REPO_DIR/ide/terminal/wezterm/weztermlinux.lua" "$HOME/.config/wezterm/wezterm.lua"
+link "$REPO_DIR/dotenv/.config/hypr" "$HOME/.config/hypr"
 
 # --- 5. Obsidian settings (sanitized snapshot -> vault) -------------------------
 VAULT_DIR="${VAULT_DIR:-$HOME/notes}"
