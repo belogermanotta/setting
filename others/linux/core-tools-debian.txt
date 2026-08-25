@@ -1,0 +1,29 @@
+# Core CLI tools — Debian/Ubuntu (apt)
+# Note: lazydocker is not packaged in Debian — install via go install
+#   github.com/jesseduffield/lazydocker@latest  (or use the docker-compose plugin)
+zsh
+git
+curl
+wget
+eza
+bat
+fzf
+zoxide
+fd-find
+ripgrep
+jq
+lazygit
+docker
+docker-compose
+tmux
+neovim
+tree
+unzip
+p7zip-full
+htop
+btop
+fastfetch
+bash-completion
+openssh-client
+keychain
+tldr

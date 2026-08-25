@@ -1,3 +1,7 @@
+# Atuin shell history (guarded: this file is also sourced from .zshrc, and the
+# macOS-era lines below assume bash on macOS — keep the init at the top).
+[ -n "$BASH_VERSION" ] && command -v atuin >/dev/null && eval "$(atuin init bash --disable-up-arrow)"
+
 export GOPATH=$HOME/go
 
 #export GOROOT=$HOME/go
