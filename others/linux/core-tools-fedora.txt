@@ -1,0 +1,29 @@
+# Core CLI tools — Fedora (dnf)
+# Note: lazydocker is not packaged in Fedora — install via go install
+#   github.com/jesseduffield/lazydocker@latest
+zsh
+git
+curl
+wget
+eza
+bat
+fzf
+zoxide
+fd-find
+ripgrep
+jq
+lazygit
+docker
+docker-compose
+tmux
+neovim
+tree
+unzip
+p7zip
+htop
+btop
+fastfetch
+bash-completion
+openssh
+keychain
+tldr

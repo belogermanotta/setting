@@ -186,3 +186,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Atuin shell history (sync + search). Ctrl-R = atuin; up-arrow stays native.
+# Must stay after omz/fzf init so it wins the Ctrl-R binding.
+command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
