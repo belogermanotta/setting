@@ -1,3 +1,35 @@
+# New Linux machine (laptop from eBay, fresh install) — 2 minute setup
+
+```bash
+git clone <this-repo-url> "$HOME/setting"
+"$HOME/setting/bootstrap.sh"          # core tools + dotfiles + zsh/p10k + nvim + wezterm + obsidian
+"$HOME/setting/bootstrap.sh" --full   # optional: also restore full Arch package list
+```
+
+- Symlinks everything from `dotenv/` into `$HOME`; existing files are backed up with `--force`.
+- `others/linux/core-tools-{arch,debian,fedora}.txt` — curated CLI tools per distro (edit freely).
+- `others/linux/pkglist-arch.txt` — full `pacman -Qqe` snapshot of the current Arch machine (`--full` restores it). Refresh after installing something new:
+  ```bash
+  pacman -Qqe > others/linux/pkglist-arch.txt
+  ```
+- The old `others/linux/ubuntu/installed-packages.txt` is a full `dpkg-query` dump — not for bootstrap, keep only as reference.
+
+## Onboarding (macOS / Windows / Linux playbooks)
+
+- `onboarding/macos/` — full new-Mac playbook: enrollment → install.sh → copy-config.sh → calendar sync → LaunchAgent → AI agent
+- `onboarding/windows/` — winget one-shot install → PowerShell 7 + oh-my-posh (p10k theme) → Task Scheduler
+- `onboarding/linux/` — this repo's bootstrap is the Linux path; the folder has the systemd timer + playbook
+- `obsidian/` — sanitized `.obsidian` snapshot: **configs + themes only** (plugin
+  `data.json`, manifests, app settings; **no plugin binaries, no credentials, no
+  UI state**). bootstrap.sh applies it to the vault (`VAULT_DIR` overridable).
+  Plugin code comes from the vault clone (or re-install from Obsidian community
+  plugins). Refresh it from a configured vault:
+  ```bash
+  # from the vault, configs only (strip main.js/styles.css + any UI-state):
+  find .obsidian -name 'main.js' -delete -o -name 'styles.css' -delete
+  cp -r .obsidian "$HOME/setting/obsidian/"
+  ```
+
 ## OSX
 
 - Go to System Preferences -> Keyboard -> Shortcuts -> Services -> Files and Folders

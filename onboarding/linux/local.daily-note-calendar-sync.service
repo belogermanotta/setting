@@ -1,0 +1,8 @@
+[Unit]
+Description=Daily note calendar+tasks sync
+
+[Service]
+Type=oneshot
+ExecStart=%h/notes/onboarding/linux/sync.sh
+# If the vault lives elsewhere, override with:
+#   systemctl --user edit local.daily-note-calendar-sync.service
