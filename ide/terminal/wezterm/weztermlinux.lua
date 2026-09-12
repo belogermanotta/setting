@@ -110,6 +110,17 @@ config.keys = {
 		key = "F11",
 		action = wezterm.action.ToggleFullScreen,
 	},
+	-- Scroll without PageUp/PageDown (Ctrl+U/D left for nvim/shell)
+	{
+		key = "UpArrow",
+		mods = "CTRL",
+		action = wezterm.action.ScrollByPage(-1),
+	},
+	{
+		key = "DownArrow",
+		mods = "CTRL",
+		action = wezterm.action.ScrollByPage(1),
+	},
 }
 
 return config

@@ -93,6 +93,10 @@ return {
 		-- CMD + ARROWS (line start/end) ------------------------
 		{ key = "LeftArrow", mods = "CMD", action = act.SendString("\x1b0") }, -- ESC 0  -> go to line start
 		{ key = "RightArrow", mods = "CMD", action = act.SendString("\x1b$") }, -- ESC $  -> go to line end
+
+		-- Scroll without PageUp/PageDown (Ctrl+U/D left for nvim/shell)
+		{ key = "UpArrow", mods = "CTRL", action = act.ScrollByPage(-1) },
+		{ key = "DownArrow", mods = "CTRL", action = act.ScrollByPage(1) },
 	},
 
 	tab_bar_style = {

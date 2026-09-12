@@ -96,6 +96,18 @@ config.keys = {
 		mods = "CTRL|SHIFT",
 		action = wezterm.action.SendString("\x1bZ"),
 	},
+	-- Scroll without PageUp/PageDown (Ctrl+U/D left for nvim/shell)
+	{
+		key = "UpArrow",
+		mods = "CTRL",
+		action = wezterm.action.ScrollByPage(-1),
+	},
+	{
+		key = "DownArrow",
+		mods = "CTRL",
+		action = wezterm.action.ScrollByPage(1),
+	},
+
 
 	-- Windows/Super + 1-9 to switch to tab
 	{ key = "1", mods = "SUPER", action = wezterm.action.ActivateTab(0) },
