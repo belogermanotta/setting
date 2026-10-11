@@ -1,0 +1,25 @@
+-- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- List current monitors and supported resolutions with: hyprctl monitors all
+
+local omarchy_gdk_scale = 2
+local omarchy_monitor_scale = 2
+
+hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = omarchy_monitor_scale })
+
+-- Physical order: MSI (DP-2) on the left, Dell (HDMI-A-2) on the right. Pin both so a reconnect cannot leave a gap.
+-- HDMI starts 1px inside DP so the pointer can cross the mixed 1.6 / 2 scales.
+hl.monitor({ output = "DP-2", mode = "preferred", position = "0x0", scale = 1.6 })
+hl.monitor({ output = "HDMI-A-2", mode = "preferred", position = "2149x0", scale = 2 })
+-- hl.monitor({ output = "DP-2", mode = "2560x1440@144", position = "0x0", scale = 1.5 })
+
+-- Portrait/rotated secondary monitor (transform: 1 = 90°, 3 = 270°).
+-- hl.monitor({ output = "DP-2", mode = "preferred", position = "auto", scale = 1, transform = 1 })
+
+-- Pin workspaces to specific monitors.
+hl.workspace_rule({ workspace = "1", monitor = "DP-2" })
+hl.workspace_rule({ workspace = "2", monitor = "DP-2" })
+hl.workspace_rule({ workspace = "3", monitor = "DP-2" })
+hl.workspace_rule({ workspace = "4", monitor = "HDMI-A-2" })
+hl.workspace_rule({ workspace = "5", monitor = "HDMI-A-2", layout = "scrolling", layout_opts = { column_width = 0.45 } })
+hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-2", layout = "scrolling", layout_opts = { column_width = 1.0 } })
