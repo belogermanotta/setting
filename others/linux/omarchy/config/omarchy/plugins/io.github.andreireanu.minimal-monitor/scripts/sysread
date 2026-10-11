@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+# Emit one JSON line describing CPU load, package temperature, memory use and
+# every readable fan.
+#   sysread                      one shot (CPU % is measured over 0.2s)
+#   sysread --loop --interval 2  stream one line every 2 seconds
+# Set MONITOR_HWMON_ROOT to point at a fake tree when testing without sensors.
+set -u
+
+interval=2
+loop=0
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --loop) loop=1 ;;
+    --interval) interval="${2:-2}"; shift ;;
+  esac
+  shift
+done
+
+hwmon_root="${MONITOR_HWMON_ROOT:-/sys/class/hwmon}"
+
+prev_busy=0
+prev_total=0
+
+# CPU percentage comes from the delta between two /proc/stat samples, so the
+# first reading of a run is always reported as unknown rather than a wrong 0.
+cpu_percent() {
+  local cpu user nice system idle iowait irq softirq steal busy total d_busy d_total
+  read -r cpu user nice system idle iowait irq softirq steal _ < /proc/stat
+  busy=$((user + nice + system + irq + softirq + steal))
+  total=$((busy + idle + iowait))
+
+  d_busy=$((busy - prev_busy))
+  d_total=$((total - prev_total))
+  prev_busy=$busy
+  prev_total=$total
+
+  if [ "$d_total" -le 0 ]; then
+    echo "null"
+  else
+    echo $(((d_busy * 100 + d_total / 2) / d_total))
+  fi
+}
+
+mem_percent() {
+  local total avail
+  total=$(awk '/^MemTotal:/{print $2}' /proc/meminfo)
+  avail=$(awk '/^MemAvailable:/{print $2}' /proc/meminfo)
+  if [ -z "$total" ] || [ -z "$avail" ] || [ "$total" -le 0 ]; then
+    echo "null"
+  else
+    echo $((((total - avail) * 100 + total / 2) / total))
+  fi
+}
+
+# Prefer the CPU package sensor. k10temp/zenpower on AMD, coretemp on Intel;
+# otherwise fall back to the hottest sane reading so the widget is never blank.
+cpu_temp() {
+  local chip name input label value best="" fallback=""
+  for chip in "$hwmon_root"/hwmon*; do
+    [ -d "$chip" ] || continue
+    name=$(cat "$chip/name" 2>/dev/null) || continue
+    for input in "$chip"/temp[0-9]*_input; do
+      [ -r "$input" ] || continue
+      value=$(cat "$input" 2>/dev/null) || continue
+      case "$value" in ''|*[!0-9-]*) continue ;; esac
+      value=$((value / 1000))
+      [ "$value" -gt 0 ] && [ "$value" -lt 150 ] || continue
+
+      label=$(cat "${input%_input}_label" 2>/dev/null)
+      case "$name" in
+        k10temp|zenpower)
+          [ "$label" = "Tctl" ] || [ "$label" = "Tdie" ] && best=$value ;;
+        coretemp)
+          case "$label" in "Package id "*) best=$value ;; esac ;;
+      esac
+      [ -z "$fallback" ] || [ "$value" -gt "$fallback" ] && fallback=$value
+    done
+  done
+  if [ -n "$best" ]; then echo "$best"
+  elif [ -n "$fallback" ]; then echo "$fallback"
+  else echo "null"; fi
+}
+
+# hwmon names and labels are strings from the kernel, so they go into the JSON
+# through a real escaper rather than straight into printf. Backslash first, then
+# the quote, then control characters are dropped and the result is capped: a
+# label is a short word, and nothing downstream should have to parse a novel.
+json_string() {
+  local s="$1"
+  s=${s//\\/\\\\}
+  s=${s//\"/\\\"}
+  s=$(printf '%s' "$s" | tr -d '\000-\037\177')
+  printf '%s' "${s:0:64}"
+}
+
+# True when the embedded controller reports a fan of its own.
+ec_reports_fan() {
+  local chip input
+  for chip in "$hwmon_root"/hwmon*; do
+    [ -d "$chip" ] || continue
+    [ "$(cat "$chip/name" 2>/dev/null)" = "cros_ec" ] || continue
+    for input in "$chip"/fan[0-9]*_input; do
+      [ -r "$input" ] && return 0
+    done
+  done
+  return 1
+}
+
+# Every fan on the machine, each listed once. acpi_fan can be a second view of
+# a fan the embedded controller already reports -- a Framework laptop shows its
+# one fan under both acpi_fan and cros_ec -- so the ACPI copy is dropped when
+# cros_ec is present. Any other chip reports its own fans, so those are kept.
+fans_json() {
+  local first=1 chip name input rpm base index label skip_acpi=0
+  if ec_reports_fan; then skip_acpi=1; fi
+  printf '['
+  for chip in "$hwmon_root"/hwmon*; do
+    [ -d "$chip" ] || continue
+    name=$(cat "$chip/name" 2>/dev/null) || continue
+    [ -n "$name" ] || continue
+    if [ "$name" = "acpi_fan" ] && [ "$skip_acpi" -eq 1 ]; then continue; fi
+
+    for input in "$chip"/fan[0-9]*_input; do
+      [ -r "$input" ] || continue
+      rpm=$(cat "$input" 2>/dev/null) || continue
+      case "$rpm" in ''|*[!0-9]*) continue ;; esac
+
+      base=${input%_input}
+      index=${base##*/fan}
+      # The glob is fan[0-9]*_input, so the middle can hold more than digits.
+      case "$index" in ''|*[!0-9]*) continue ;; esac
+      label=$(cat "${base}_label" 2>/dev/null)
+      [ -n "$label" ] || label="Fan $index"
+
+      [ $first -eq 1 ] || printf ','
+      first=0
+      printf '{"id":"%s/fan%s","chip":"%s","label":"%s","rpm":%s}' \
+        "$(json_string "$name")" "$index" "$(json_string "$name")" \
+        "$(json_string "$label")" "$rpm"
+    done
+  done
+  printf ']'
+}
+
+emit() {
+  printf '{"cpu":%s,"temp":%s,"mem":%s,"fans":%s}\n' \
+    "$(cpu_percent)" "$(cpu_temp)" "$(mem_percent)" "$(fans_json)"
+}
+
+if [ "$loop" -eq 1 ]; then
+  cpu_percent > /dev/null   # prime the /proc/stat baseline
+  while :; do
+    sleep "$interval"
+    emit
+  done
+else
+  cpu_percent > /dev/null
+  sleep 0.2
+  emit
+fi

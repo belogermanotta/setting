@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.belogermanotta.omajump",
+  "name": "OmaJump",
+  "version": "0.4.2",
+  "author": "belogermanotta",
+  "license": "MIT",
+  "description": "Navigate, search, scroll, and copy text across every screen",
+  "kinds": [
+    "overlay"
+  ],
+  "entryPoints": {
+    "overlay": "OmaJump.qml"
+  }
+}
