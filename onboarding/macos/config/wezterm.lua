@@ -3,11 +3,11 @@ local wezterm = require 'wezterm'
 local config = {}
 
 -- Font: must be installed (install.sh -> font-jetbrains-mono-nerd-font)
-config.font = wezterm.font('JetBrainsMono Nerd Font', { size = 13.0 })
-config.font_size = 13.0
+config.font = wezterm.font('JetBrainsMono Nerd Font', { size = 44.0 })
+config.font_size = 44.0
 
 -- Color scheme (built-in)
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'Tokyo Night'
 
 -- Shell
 config.default_prog = { '/bin/zsh' }

@@ -1,4 +1,5 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.clipboard")
 require("config.lazy")
 
 vim.g.neo_tree_remove_legacy_commands = 1

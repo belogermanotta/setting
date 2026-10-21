@@ -9,9 +9,11 @@ git clone <this-repo-url> "$HOME/setting"
 - Symlinks everything from `dotenv/` into `$HOME`; existing files are backed up with `--force`.
 - `others/linux/core-tools-{arch,debian,fedora}.txt` — curated CLI tools per distro (edit freely).
 - `others/linux/pkglist-arch.txt` — full `pacman -Qqe` snapshot of the current Arch machine (`--full` restores it). Refresh after installing something new:
+
   ```bash
   pacman -Qqe > others/linux/pkglist-arch.txt
   ```
+
 - The old `others/linux/ubuntu/installed-packages.txt` is a full `dpkg-query` dump — not for bootstrap, keep only as reference.
 
 ## Onboarding (macOS / Windows / Linux playbooks)
@@ -24,6 +26,7 @@ git clone <this-repo-url> "$HOME/setting"
   UI state**). bootstrap.sh applies it to the vault (`VAULT_DIR` overridable).
   Plugin code comes from the vault clone (or re-install from Obsidian community
   plugins). Refresh it from a configured vault:
+
   ```bash
   # from the vault, configs only (strip main.js/styles.css + any UI-state):
   find .obsidian -name 'main.js' -delete -o -name 'styles.css' -delete
@@ -43,30 +46,29 @@ git clone <this-repo-url> "$HOME/setting"
   - hold cmd, drag the application to the finder toolbar
   - (Optional) right click iterm -> get info, right click the new tab application -> get info, drag iterm preview image to the new tab application icon to change the application icon similiar to iterm icon
 - Update default setting
-  - https://www.youtube.com/watch?v=psPgSN1bPLY
+  - <https://www.youtube.com/watch?v=psPgSN1bPLY>
   
+## Apps
 
-
-## Apps:
-
-- https://iterm2.com/ - terminal
-- https://matthewpalmer.net/vanilla/ - task icon manager
-- https://rectangleapp.com/ - window manager
-- https://www.keka.io/en/ - file archiver
-- https://get-switch.app/ - app switcher
-- https://apps.apple.com/us/app/amphetamine/id937984704 - keep awake
-- Install system monitor in menu bar 
-run `brew install --cask stats` to install https://github.com/exelban/stats
+- <https://iterm2.com/> - terminal
+- <https://matthewpalmer.net/vanilla/> - task icon manager
+- <https://rectangleapp.com/> - window manager
+- <https://www.keka.io/en/> - file archiver
+- <https://get-switch.app/> - app switcher
+- <https://apps.apple.com/us/app/amphetamine/id937984704> - keep awake
+- Install system monitor in menu bar
+run `brew install --cask stats` to install <https://github.com/exelban/stats>
 
 Optional:
-- https://www.alfredapp.com/ - finder
-- https://meetfranz.com/ - omni channel messenger / email
-- http://maddin.io/gestimer/ - small reminder
-- https://aptonic.com/ - dragdrop clipboard
-- https://tableplus.com/ - database client
 
+- <https://www.alfredapp.com/> - finder
+- <https://meetfranz.com/> - omni channel messenger / email
+- <http://maddin.io/gestimer/> - small reminder
+- <https://aptonic.com/> - dragdrop clipboard
+- <https://tableplus.com/> - database client
 
 ### Installation commands
+
 ```
 xcode-select --install
 
@@ -79,8 +81,7 @@ brew install --cask font-hack-nerd-font
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
 # Brew
-brew install lazygit lazydocker ripgrep fzf gnu-sed neovim git powerlevel9k wget cmake putty kubectl redis gradle helm terraform jenv jq antibody php@7.4 shivammathur/php/php@7.4 cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh nodejs python cmake vim 
-
+brew install lazygit lazydocker ripgrep fzf gnu-sed neovim wget cmake putty kubectl redis gradle helm jenv jq cocoapods rbenv ruby-build chruby ruby-install chruby keychain font-hack-nerd-font zsh nodejs python cmake vim
 
 # Tools
 brew install redis-pro
@@ -155,15 +156,14 @@ git config --global mergetool.keepBackup false
 
 ```
 
-##  Terminal Reference
+## Terminal Reference
 
-- https://github.com/haccks/zsh-config
-- https://github.com/hyperupcall/autoenv
+- <https://github.com/haccks/zsh-config>
+- <https://github.com/hyperupcall/autoenv>
 `brew install 'autoenv'`
-- https://github.com/dkarter/dotfiles
-- https://github.com/ryanoasis/nerd-fonts/tree/2.1.0
-- https://github.com/ycm-core/YouCompleteMe
-
+- <https://github.com/dkarter/dotfiles>
+- <https://github.com/ryanoasis/nerd-fonts/tree/2.1.0>
+- <https://github.com/ycm-core/YouCompleteMe>
 
 ## Jetbrains
 
@@ -184,7 +184,7 @@ git config --global mergetool.keepBackup false
 
 ### Enable steam deck
 
-#### Enable package manager:
+#### Enable package manager
 
 ```
 sudo steamos-readonly disable
@@ -238,7 +238,7 @@ sudo pacman-key --refresh-keys
 
 #### Optimize Battery
 
-https://github.com/AdnanHodzic/auto-cpufreq#auto-cpufreq-installer
+<https://github.com/AdnanHodzic/auto-cpufreq#auto-cpufreq-installer>
 
 ```
 git clone https://github.com/AdnanHodzic/auto-cpufreq.git
@@ -251,17 +251,15 @@ systemctl enable auto-cpufreq
 ```
 
 #### Steam deck as controller
-https://www.reddit.com/r/SteamDeck/comments/v22ddf/guide_how_to_use_your_deck_as_a_steam_input/
+
+<https://www.reddit.com/r/SteamDeck/comments/v22ddf/guide_how_to_use_your_deck_as_a_steam_input/>
 
 ### Useful SteamDeck References
 
-- https://flathub.org/apps/collection/popular
-- https://github.com/mikeroyal/Steam-Deck-Guide
-- https://romsmania.cc/
-
+- <https://flathub.org/apps/collection/popular>
+- <https://github.com/mikeroyal/Steam-Deck-Guide>
+- <https://romsmania.cc/>
 
 #### Amphetamine
 
-https://apps.apple.com/gb/app/amphetamine/id937984704?mt=12
-
-
+<https://apps.apple.com/gb/app/amphetamine/id937984704?mt=12>
