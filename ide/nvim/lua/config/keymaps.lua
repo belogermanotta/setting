@@ -2,20 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
--- SYSTEM CLIPBOARD INTEGRATION (Cmd keys)
-
--- Copy (Cmd-C)
-vim.keymap.set("v", "<Esc>c", '"+y', { noremap = true, silent = true })
-
--- Paste (Cmd-V)
-vim.keymap.set("n", "<Esc>p", '"+p', { noremap = true, silent = true })
-vim.keymap.set("i", "<Esc>p", '<Esc>"+pa', { noremap = true, silent = true })
-vim.keymap.set("v", "<Esc>p", '"+p', { noremap = true, silent = true })
--- Paste in :command mode (cmdline mode)
-vim.keymap.set("c", "<Esc>p", function()
-  return vim.fn.escape(vim.fn.getreg("+"), "\\")
-end, { expr = true })
-
 -- Cut (Cmd-X)
 vim.keymap.set("v", "<Esc>x", '"+d', { noremap = true, silent = true })
 
@@ -26,6 +12,10 @@ vim.keymap.set("n", "<Esc>s", "<cmd>w<cr>", { noremap = true, silent = true })
 
 -- Close buffer (Cmd-W)
 vim.keymap.set("n", "<Esc>w", "<cmd>bd<cr>", { noremap = true, silent = true })
+
+-- Switch buffers
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { noremap = true, silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprevious<cr>", { noremap = true, silent = true, desc = "Previous buffer" })
 
 -- Undo / Redo
 vim.keymap.set("n", "<Esc>z", "u", { noremap = true, silent = true }) -- Cmd-Z
