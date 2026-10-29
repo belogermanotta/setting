@@ -6,6 +6,7 @@ return {
       -- Recommended for telescope extension
       vim.g.bookmark_sign = ""
       vim.g.bookmark_annotation_sign = "陼"
+      vim.g.bookmark_save_per_working_dir = 1
     end,
     config = function()
       -- optional: your own mappings
